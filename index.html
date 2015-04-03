@@ -133,7 +133,7 @@ self.ongeofenceerror = (event) => {
   console.log(event.geofence.region.name);
   console.log(event.error);
 
-  // Some error condition occured. The region is no longer monitored, and won't
+  // Some error condition occurred. The region is no longer monitored, and won't
   // trigger any more events.
 
   // Try to re-monitor, although depending on the error this might fail.
@@ -771,7 +771,7 @@ self.onsomeotherevent = (event) => {
             </li>
             <li>Let <var>event.code</var> be an error code.
             </li>
-            <li>Let <var>event.message</var> be a descriptive message for the error that occured.
+            <li>Let <var>event.message</var> be a descriptive message for the error that occurred.
             </li>
             <li>Remove the <a>geofence</a> for which an error was detected from the set of
             <a>active geofences</a> associated with the current <a>service worker registration</a>.
