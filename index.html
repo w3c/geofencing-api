@@ -188,6 +188,10 @@ self.onsomeotherevent = (event) => {
         Terminology
       </h2>
       <p>
+        The <dfn>geographic coordinate</dfn> reference system used by the attributes in this API is
+        the World Geodetic System (2d) [[!WGS84]]. No other reference system is supported.
+      </p>
+      <p>
         The terms <dfn><a href="http://www.w3.org/TR/html5/webappapis.html#event-handlers">event
         handler</a></dfn>, <dfn><a href=
         "http://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">event handler event
@@ -606,16 +610,12 @@ self.onsomeotherevent = (event) => {
         <p>
           The <code><dfn id="widl-GeolocationPoint-latitude">latitude</dfn></code> property of a
           <code><a>GeolocationPoint</a></code> dictionary represents the latitude in circular
-          degrees of a point.
+          degrees of a <a title="geographic coordinate">point</a>.
         </p>
         <p>
           The <code><dfn id="widl-GeolocationPoint-longitude">longitude</dfn></code> property of a
           <code><a>GeolocationPoint</a></code> dictionary represents the longitude in circular
-          degrees of a point.
-        </p>
-        <p>
-          The geographic coordinate reference system used by the attributes in this API is the
-          World Geodetic System (2d) [[!WGS84]]. No other reference system is supported.
+          degrees of a <a title="geographic coordinate">point</a>.
         </p>
         <p class="issue">
           The downside of doing error checks in the CircularGeofenceRegion constructor is that they
