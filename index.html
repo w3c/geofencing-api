@@ -577,41 +577,43 @@ self.onsomeotherevent = (event) => {
           <a>CircularGeofenceRegion</a> interface
         </h2>
         <dl title=
-        "[Constructor(CircularGeofenceRegionInit), Exposed=(Window,Worker)] interface CircularGeofenceRegion : GeofenceRegion"
+        "[Constructor(CircularGeofenceRegionInit init), Exposed=(Window,Worker)] interface CircularGeofenceRegion : GeofenceRegion"
         class="idl" data-merge="CircularGeofenceRegionInit GeolocationPoint">
           <dt>
-            readonly attribute GeolocationPoint center
+            readonly attribute double latitude
+          </dt>
+          <dt>
+            readonly attribute double longitude
           </dt>
           <dt>
             readonly attribute double radius
           </dt>
         </dl>
         <p>
-          The <code><dfn id="widl-CircularGeofenceRegion-center">center</dfn></code> attribute MUST
-          return the value it was initialized to. When the object is created, this attribute MUST
-          be set to a <code><a>GeolocationPoint</a></code> instance with its <code>latitude</code>
-          and <code>longitude</code> properties set to the same values as those properties in the
-          <code><a>CircularGeofenceRegionInit</a></code> dictionary. This represents the center of
-          the circular region. Latitude must be between -90 and 90 inclusive. Longitude must be
-          between -180 and 180 inclusive. If either of these properties is outside these ranges,
-          the constructor will throw a <a>RangeError</a>.
+          The <code><a>CircularGeofenceRegion</a></code> constructor when invoked
+          MUST run the following steps:
+        </p>
+        <ol>
+          <li>If <var>init.latitude</var> is less than <code>-90</code> or greater than
+          <code>90</code>, throw a <a>RangeError</a>.
+          </li>
+          <li>If <var>init.longitude</var> is less than <code>-180</code> or greater than
+          <code>180</code>, throw a <a>RangeError</a>.
+          </li>
+          <li>Set the <var>latitude</var>, <var>longitude</var> and <var>radius</var> attributes of
+          the newly created <code>CircularGeofenceRegion</code> instance to the same values as
+          those in the initializer.
+          </li>
+        </ol>
+        <p>
+          The <code><dfn id="widl-CircularGeofenceRegion-latitude">latitude</dfn></code> attribute
+          MUST return the value it was intialized to. This value represents the latitude in
+          circular degrees of the center of the circular region.
         </p>
         <p>
-          The <code><dfn id="widl-CircularGeofenceRegion-radius">radius</dfn></code> attribute MUST
-          return the value it was initialized to. When the object is created, this attribute MUST
-          be set to the value of the <code>radius</code> property in the
-          <code><a>CircularGeofenceRegionInit</a></code> dictionary. This represents the radius of
-          the circular region in meters.
-        </p>
-        <p>
-          The <code><dfn id="widl-GeolocationPoint-latitude">latitude</dfn></code> property of a
-          <code><a>GeolocationPoint</a></code> dictionary represents the latitude in circular
-          degrees of a <a title="geographic coordinate">point</a>.
-        </p>
-        <p>
-          The <code><dfn id="widl-GeolocationPoint-longitude">longitude</dfn></code> property of a
-          <code><a>GeolocationPoint</a></code> dictionary represents the longitude in circular
-          degrees of a <a title="geographic coordinate">point</a>.
+          The <code><dfn id="widl-CircularGeofenceRegion-longitude">longitude</dfn></code>
+          attribute MUST return the value it was intialized to. This value represents the longitude
+          in circular degrees of the center of the circular region.
         </p>
         <p class="issue">
           The downside of doing error checks in the CircularGeofenceRegion constructor is that they
@@ -627,14 +629,6 @@ self.onsomeotherevent = (event) => {
           </dt>
           <dt>
             double radius
-          </dt>
-        </dl>
-        <dl title="[Exposed=(Window,Worker)] interface GeolocationPoint" class="idl">
-          <dt>
-            attribute double latitude
-          </dt>
-          <dt>
-            attribute double longitude
           </dt>
         </dl>
       </section>
