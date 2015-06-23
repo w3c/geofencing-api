@@ -5,10 +5,9 @@
       Geofencing API
     </title>
     <meta charset='utf-8'>
-    <script src='https://www.w3.org/Tools/respec/respec-w3c-common' async="" class='remove'>
-</script>
+    <script src='https://www.w3.org/Tools/respec/respec-w3c-common' async class='remove'>
+    </script>
     <script class="remove">
-// (this is to make tidy happy)
       // See http://www.w3.org/respec/ for ReSpec documentation.
       var respecConfig = {
           specStatus: "ED",
@@ -95,7 +94,7 @@
 // https://example.com/webapp.js
 navigator.serviceWorker
   .register('serviceworker.js')
-  .then((swRegistration) => {
+  .then((swRegistration) =&gt; {
     let region = new CircularGeofenceRegion({
       name: 'myfence',
       latitude: 37.421999,
@@ -109,14 +108,14 @@ navigator.serviceWorker
       .then(
         // If more than just a name needs to be stored with a geofence, now
         // would be the time to store this in some storage.
-        (geofence) => console.log(geofence.id),
-        (error) => console.log(error)
+        (geofence) =&gt; console.log(geofence.id),
+        (error) =&gt; console.log(error)
       );
   });
 </pre>
       <pre class="example highlight" title="Respond to a region being entered">
 // https://example.com/serviceworker.js
-self.ongeofenceenter = (event) => {
+self.ongeofenceenter = (event) =&gt; {
   console.log(event.geofence.id);
   console.log(event.geofence.region.name);
 
@@ -128,7 +127,7 @@ self.ongeofenceenter = (event) => {
 </pre>
       <pre class="example highlight" title="Respond to an error condition">
 // https://example.com/serviceworker.js
-self.ongeofenceerror = (event) => {
+self.ongeofenceerror = (event) =&gt; {
   console.log(event.geofence.id);
   console.log(event.geofence.region.name);
   console.log(event.error);
@@ -139,9 +138,9 @@ self.ongeofenceerror = (event) => {
   // Try to re-monitor, although depending on the error this might fail.
   event
     .waitUntil(self.registration.geofencing.add(event.geofence.region))
-    .then((geofence) => {
+    .then((geofence) =&gt; {
       // re-monitoring succeeded, new geofence will have a different ID.
-    }, (error) => {
+    }, (error) =&gt; {
       // re-monitoring failed.
     });
 };
@@ -151,7 +150,7 @@ self.ongeofenceerror = (event) => {
 // https://example.com/serviceworker.js
 
 // Either look geofence up by name:
-self.onsomeevent = (event) => {
+self.onsomeevent = (event) =&gt; {
   event
     .waitUntil(
       self.registration.geofencing.getAll({
@@ -159,16 +158,16 @@ self.onsomeevent = (event) => {
       })
     )
     .then(
-      geofences => geofences.forEach(fence => fence.remove())
+      geofences =&gt; geofences.forEach(fence =&gt; fence.remove())
     );
 };
 
 // Or look geofence up by ID:
-self.onsomeotherevent = (event) => {
+self.onsomeotherevent = (event) =&gt; {
   let geofence_id = ''; /* somehow get the ID of a geofence */
   event
     .waitUntil(self.registration.geofencing.getById(geofence_id))
-    .then(geofence => geofence.remove());
+    .then(geofence =&gt; geofence.remove());
 };
 </pre>
     </section>
@@ -638,8 +637,8 @@ self.onsomeotherevent = (event) => {
         </h2>
         <p>
           The Service Worker specification defines a <code><a href=
-          "#dfn-serviceworkerglobalscope">ServiceWorkerGlobalScope</a></code> interface, which
-          this specification extends.
+          "#dfn-serviceworkerglobalscope">ServiceWorkerGlobalScope</a></code> interface, which this
+          specification extends.
         </p>
         <dl title="partial interface ServiceWorkerGlobalScope" class="idl">
           <dt>
