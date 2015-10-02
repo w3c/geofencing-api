@@ -757,7 +757,6 @@ details.annoying-warning:not([open]) > summary {
      <dd><span><a href="mailto:public-geolocation@w3.org?subject=%5Bgeofencing-api%5D%20YOUR%20TOPIC%20HERE">public-geolocation@w3.org</a> with subject line “<kbd>[geofencing-api] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-geolocation/" rel="discussion">archives</a>)</span>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/w3c/geofencing-api/issues/">GitHub</a>
-     <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editor:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:mek@chromium.org">Marijn Kruisselbrink</a> (<span class="p-org org">Google</span>)
     </dl>
@@ -792,31 +791,42 @@ details.annoying-warning:not([open]) > summary {
   <h2 class="no-num no-toc no-ref heading settled" id="contents"><span class="content">Table of Contents</span></h2>
   <div data-fill-with="table-of-contents" role="navigation">
    <ul class="toc" role="directory">
-    <li><a href="#introduction"><span class="secno">1</span> <span class="content"> Introduction </span></a>
-    <li><a href="#model"><span class="secno">2</span> <span class="content"> Model </span></a>
     <li>
-     <a href="#security-and-privacy-considerations"><span class="secno">3</span> <span class="content"> Security and privacy considerations </span></a>
+     <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
+     <ul class="toc">
+      <li>
+       <a href="#examples"><span class="secno">1.1</span> <span class="content">Examples</span></a>
+       <ul class="toc">
+        <li><a href="#example-monitor-a-region"><span class="secno">1.1.1</span> <span class="content">Monitor a region</span></a>
+        <li><a href="#example-respond-to-enter"><span class="secno">1.1.2</span> <span class="content">Respond to a region being entered</span></a>
+        <li><a href="#example-respond-to-error"><span class="secno">1.1.3</span> <span class="content">Respond to an error condition</span></a>
+        <li><a href="#example-unmonitor"><span class="secno">1.1.4</span> <span class="content">Unmonitor a region in response to some other event</span></a>
+       </ul>
+     </ul>
+    <li><a href="#model"><span class="secno">2</span> <span class="content">Model</span></a>
+    <li>
+     <a href="#security-and-privacy-considerations"><span class="secno">3</span> <span class="content">Security and privacy considerations</span></a>
      <ul class="toc">
       <li><a href="#privacy-considerations-for-implementers-of-the-geofencing-api"><span class="secno">3.1</span> <span class="content"> Privacy considerations for implementers of the Geofencing API </span></a>
       <li><a href="#privacy-considerations-for-recipients-of-location-information"><span class="secno">3.2</span> <span class="content"> Privacy considerations for recipients of location information </span></a>
       <li><a href="#additional-implementation-considerations"><span class="secno">3.3</span> <span class="content"> Additional implementation considerations </span></a>
      </ul>
     <li>
-     <a href="#api-description"><span class="secno">4</span> <span class="content"> API Description </span></a>
+     <a href="#api-description"><span class="secno">4</span> <span class="content">API Description</span></a>
      <ul class="toc">
       <li><a href="#extensions-to-the-serviceworkerregistration-interface"><span class="secno">4.1</span> <span class="content"> Extensions to the <code class="idl"><span>ServiceWorkerRegistration</span></code> interface </span></a>
-      <li><a href="#geofencemanager-interface"><span class="secno">4.2</span> <span class="content"> <code class="idl"><span>GeofenceManager</span></code> interface </span></a>
-      <li><a href="#geofence-interface"><span class="secno">4.3</span> <span class="content"> <span>Geofence</span> interface </span></a>
-      <li><a href="#geofenceregion-interface"><span class="secno">4.4</span> <span class="content"> <code class="idl"><span>GeofenceRegion</span></code> interface </span></a>
-      <li><a href="#circulargeofenceregion-interface"><span class="secno">4.5</span> <span class="content"> <code class="idl"><span>CircularGeofenceRegion</span></code> interface </span></a>
+      <li><a href="#geofencemanager-interface"><span class="secno">4.2</span> <span class="content"><code class="idl"><span>GeofenceManager</span></code> interface</span></a>
+      <li><a href="#geofence-interface"><span class="secno">4.3</span> <span class="content"><code class="idl"><span>Geofence</span></code> interface</span></a>
+      <li><a href="#geofenceregion-interface"><span class="secno">4.4</span> <span class="content"><code class="idl"><span>GeofenceRegion</span></code> interface</span></a>
+      <li><a href="#circulargeofenceregion-interface"><span class="secno">4.5</span> <span class="content"><code class="idl"><span>CircularGeofenceRegion</span></code> interface</span></a>
       <li>
-       <a href="#events"><span class="secno">4.6</span> <span class="content"> Events </span></a>
+       <a href="#events"><span class="secno">4.6</span> <span class="content">Events</span></a>
        <ul class="toc">
         <li><a href="#the-geofenceenter-and-geofenceleave-events"><span class="secno">4.6.1</span> <span class="content"> The <code>geofenceenter</code> and <code>geofenceleave</code> events </span></a>
-        <li><a href="#geofenceerrorevent-section"><span class="secno">4.6.2</span> <span class="content"> <code class="idl"><span>GeofenceErrorEvent</span></code> </span></a>
+        <li><a href="#geofenceerrorevent-section"><span class="secno">4.6.2</span> <span class="content"><code class="idl"><span>GeofenceErrorEvent</span></code></span></a>
        </ul>
      </ul>
-    <li><a href="#exceptions"><span class="secno">5</span> <span class="content"> Exceptions </span></a>
+    <li><a href="#exceptions"><span class="secno">5</span> <span class="content">Exceptions</span></a>
     <li>
      <a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ul class="toc">
@@ -840,23 +850,29 @@ details.annoying-warning:not([open]) > summary {
   </div>
   <main>
    <section>
-    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content"> Introduction </span><a class="self-link" href="#introduction"></a></h2>
-     <em>This section is non-normative.</em> 
-    <p> The Geofencing API lets <a data-link-type="dfn" href="#webapp" title="webapp">webapps</a> setup geographic boundaries around
-        specific locations and then receive notifications when the hosting device enters or leaves
-        those areas. While it would be possible to implement something similar using the
-        Geolocation API <a data-link-type="biblio" href="#biblio-geolocation-api">[GEOLOCATION-API]</a>, there are a few differences that could make this API
-        a better choice: </p>
+    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
+    <p><em>This section is non-normative.</em></p>
+    <p>The Geofencing API lets <a data-link-type="dfn" href="#webapp" title="webapp">webapps</a> setup geographic boundaries around
+  specific locations and then receive notifications when the hosting device enters or leaves
+  those areas. While it would be possible to implement something similar using the
+  Geolocation API <a data-link-type="biblio" href="#biblio-geolocation-api">[GEOLOCATION-API]</a>, there are a few differences that could make this API
+  a better choice:</p>
     <ul>
-     <li>Because of the limited API surface of the Geofencing API, <a data-link-type="dfn" href="#user-agent">user
-        agents</a> can implement the API in a more (power) efficient way than could be achieved by
-        regularly checking the current geographic position with the Geolocation API. 
-     <li>The Geofencing API is built around Service Workers. This makes it possible for a <a data-link-type="dfn" href="#webapp">webapp</a> to receive notifications from the Geofencing API even after the user has
-        closed the <a data-link-type="dfn" href="#webapp">webapp</a>. 
+     <li data-md="">
+      <p>Because of the limited API surface of the Geofencing API, <a data-link-type="dfn" href="#user-agent">user
+agents</a> can implement the API in a more (power) efficient way than could be achieved by
+regularly checking the current geographic position with the Geolocation API.</p>
+     <li data-md="">
+      <p>The Geofencing API is built around Service Workers. This makes it possible for a <a data-link-type="dfn" href="#webapp">webapp</a> to receive notifications from the Geofencing API even after the user has
+closed the <a data-link-type="dfn" href="#webapp">webapp</a>.</p>
     </ul>
-    <p> The following code extracts illustrate how to use this API to be notified of geographic
-        regions being entered or left. </p>
-<pre class="example highlight" id="example-adb59911" title="Monitor a region"><a class="self-link" href="#example-adb59911"></a>// https://example.com/webapp.js
+    <section>
+     <h3 class="heading settled" data-level="1.1" id="examples"><span class="secno">1.1. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h3>
+     <p>The following code extracts illustrate how to use this API to be notified of geographic
+    regions being entered or left.</p>
+     <section>
+      <h4 class="heading settled" data-level="1.1.1" id="example-monitor-a-region"><span class="secno">1.1.1. </span><span class="content">Monitor a region</span><a class="self-link" href="#example-monitor-a-region"></a></h4>
+<pre class="example highlight" id="example-89fd9b0d"><a class="self-link" href="#example-89fd9b0d"></a>// https://example.com/webapp.js
 navigator.serviceWorker
   .register('serviceworker.js')
   .then((swRegistration) => {
@@ -876,9 +892,12 @@ navigator.serviceWorker
         (geofence) => console.log(geofence.id),
         (error) => console.log(error)
       );
-  });
+});
 </pre>
-<pre class="example highlight" id="example-21ad8310" title="Respond to a region being entered"><a class="self-link" href="#example-21ad8310"></a>// https://example.com/serviceworker.js
+     </section>
+     <section>
+      <h4 class="heading settled" data-level="1.1.2" id="example-respond-to-enter"><span class="secno">1.1.2. </span><span class="content">Respond to a region being entered</span><a class="self-link" href="#example-respond-to-enter"></a></h4>
+<pre class="example highlight" id="example-21ad8310"><a class="self-link" href="#example-21ad8310"></a>// https://example.com/serviceworker.js
 self.ongeofenceenter = (event) => {
   console.log(event.geofence.id);
   console.log(event.geofence.region.name);
@@ -889,7 +908,10 @@ self.ongeofenceenter = (event) => {
   }
 };
 </pre>
-<pre class="example highlight" id="example-24ab4d23" title="Respond to an error condition"><a class="self-link" href="#example-24ab4d23"></a>// https://example.com/serviceworker.js
+     </section>
+     <section>
+      <h4 class="heading settled" data-level="1.1.3" id="example-respond-to-error"><span class="secno">1.1.3. </span><span class="content">Respond to an error condition</span><a class="self-link" href="#example-respond-to-error"></a></h4>
+<pre class="example highlight" id="example-24ab4d23"><a class="self-link" href="#example-24ab4d23"></a>// https://example.com/serviceworker.js
 self.ongeofenceerror = (event) => {
   console.log(event.geofence.id);
   console.log(event.geofence.region.name);
@@ -907,9 +929,11 @@ self.ongeofenceerror = (event) => {
       // re-monitoring failed.
     });
 };
-
 </pre>
-<pre class="example highlight" id="example-48aef5ac" title="Unmonitor a region in response to some other event"><a class="self-link" href="#example-48aef5ac"></a>// https://example.com/serviceworker.js
+     </section>
+     <section>
+      <h4 class="heading settled" data-level="1.1.4" id="example-unmonitor"><span class="secno">1.1.4. </span><span class="content">Unmonitor a region in response to some other event</span><a class="self-link" href="#example-unmonitor"></a></h4>
+<pre class="example highlight" id="example-48aef5ac"><a class="self-link" href="#example-48aef5ac"></a>// https://example.com/serviceworker.js
 
 // Either look geofence up by name:
 self.onsomeevent = (event) => {
@@ -932,73 +956,73 @@ self.onsomeotherevent = (event) => {
     .then(geofence => geofence.remove());
 };
 </pre>
+     </section>
+    </section>
    </section>
    <section>
-    <h2 class="heading settled" data-level="2" id="model"><span class="secno">2. </span><span class="content"> Model </span><a class="self-link" href="#model"></a></h2>
-    <p> The term <dfn data-dfn-type="dfn" data-noexport="" id="webapp">webapp<a class="self-link" href="#webapp"></a></dfn> refers to a Web application, i.e. an application implemented
-        using Web technologies, and executing within the context of a Web <a data-link-type="dfn" href="#user-agent">user agent</a>, e.g. a
-        Web browser or other Web runtime environment. </p>
-    <p> A <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a> has an associated <a data-link-type="dfn" href="#active-geofences">active
-        geofences</a> collection. </p>
-    <p> An <dfn data-dfn-type="dfn" data-noexport="" id="active-geofences">active geofences<a class="self-link" href="#active-geofences"></a></dfn> collection is a collection of <a data-link-type="dfn" href="#geofence-term" title="geofence">geofences</a> currently being monitored by the <a data-link-type="dfn" href="#user-agent">user agent</a> for <a data-link-type="dfn" href="#breached" title="breached">breach</a> events. </p>
-    <p> A <dfn data-dfn-type="dfn" data-noexport="" id="geofence-term">geofence<a class="self-link" href="#geofence-term"></a></dfn> is one specific registration of a geograhpic region as a geofence. </p>
-    <p> A <a data-link-type="dfn" href="#geofence-term">geofence</a> has a <dfn data-dfn-type="dfn" data-noexport="" id="name" title="geofence name">name<a class="self-link" href="#name"></a></dfn> (a string). </p>
-    <p> A <a data-link-type="dfn" href="#geofence-term">geofence</a> has an associated <a data-link-type="dfn" href="#geographic-region">geographic region</a>. </p>
-    <p> A <a data-link-type="dfn" href="#geofence-term">geofence</a> has a <dfn data-dfn-type="dfn" data-noexport="" id="geofence-id">geofence ID<a class="self-link" href="#geofence-id"></a></dfn>, a string uniquely identifying it.This ID is
-        generated by the user agent and MUST be unique among all <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated
-        with all <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept" title="service worker registration">service worker registrations</a> at the
-        same origin. A user agent SHOULD NOT reuse the ID from an old <a data-link-type="dfn" href="#geofence-term">geofence</a> for a new
-        one. </p>
-    <p> A <a data-link-type="dfn" href="#geofence-term">geofence</a> has a <dfn data-dfn-type="dfn" data-noexport="" id="include-position">include position<a class="self-link" href="#include-position"></a></dfn> flag, a boolean indicating if events
-        associated with this <a data-link-type="dfn" href="#geofence-term">geofence</a> should include the exact geographic position. </p>
-    <p> A <dfn data-dfn-type="dfn" data-noexport="" id="geographic-region">geographic region<a class="self-link" href="#geographic-region"></a></dfn> is a circular region defined by a <a data-link-type="dfn" href="#geographic-coordinate">geographic
-        coordinate</a> representing the center of the region and a <dfn data-dfn-type="dfn" data-noexport="" id="radius">radius<a class="self-link" href="#radius"></a></dfn> representing
-        the size of the region. </p>
-    <p> The <dfn data-dfn-type="dfn" data-noexport="" id="geographic-coordinate">geographic coordinate<a class="self-link" href="#geographic-coordinate"></a></dfn> reference system used by the attributes in this API is
-        the World Geodetic System (2d) <a data-link-type="biblio" href="#biblio-wgs84">[WGS84]</a>. No other reference system is supported. </p>
-    <p> A <a data-link-type="dfn" href="#geofence-term">geofence</a> is said to be <dfn data-dfn-type="dfn" data-noexport="" id="breached">breached<a class="self-link" href="#breached"></a></dfn> if the current geographical location
-        changed from being inside the <a data-link-type="dfn" href="#geographic-region">geographic region</a> to outside (a <dfn data-dfn-type="dfn" data-noexport="" id="leave-event">leave
-        event<a class="self-link" href="#leave-event"></a></dfn>), or vice versa (an <dfn data-dfn-type="dfn" data-noexport="" id="enter-event">enter event<a class="self-link" href="#enter-event"></a></dfn>). </p>
+    <h2 class="heading settled" data-level="2" id="model"><span class="secno">2. </span><span class="content">Model</span><a class="self-link" href="#model"></a></h2>
+    <p>The term <dfn data-dfn-type="dfn" data-noexport="" id="webapp">webapp<a class="self-link" href="#webapp"></a></dfn> refers to a Web application, i.e. an application implemented
+  using Web technologies, and executing within the context of a Web <a data-link-type="dfn" href="#user-agent">user agent</a>, e.g. a
+  Web browser or other Web runtime environment.</p>
+    <p>A <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a> has an associated <a data-link-type="dfn" href="#active-geofences">active geofences</a> collection.</p>
+    <p>An <dfn data-dfn-type="dfn" data-noexport="" id="active-geofences">active geofences<a class="self-link" href="#active-geofences"></a></dfn> collection is a collection of <a data-link-type="dfn" href="#geofence-term" title="geofence">geofences</a> currently being monitored by the <a data-link-type="dfn" href="#user-agent">user agent</a> for <a data-link-type="dfn" href="#breached" title="breached">breach</a> events.</p>
+    <p>A <dfn data-dfn-type="dfn" data-noexport="" id="geofence-term">geofence<a class="self-link" href="#geofence-term"></a></dfn> is one specific registration of a geograhpic region as a geofence.</p>
+    <p>A <a data-link-type="dfn" href="#geofence-term">geofence</a> has a <dfn data-dfn-type="dfn" data-noexport="" id="name" title="geofence name">name<a class="self-link" href="#name"></a></dfn> (a string).</p>
+    <p>A <a data-link-type="dfn" href="#geofence-term">geofence</a> has an associated <a data-link-type="dfn" href="#geographic-region">geographic region</a>.</p>
+    <p>A <a data-link-type="dfn" href="#geofence-term">geofence</a> has a <dfn data-dfn-type="dfn" data-noexport="" id="geofence-id">geofence ID<a class="self-link" href="#geofence-id"></a></dfn>, a string uniquely identifying it. This ID is
+  generated by the user agent and MUST be unique among all <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated
+  with all <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept" title="service worker registration">service worker registrations</a> at the
+  same origin. A user agent SHOULD NOT reuse the ID from an old <a data-link-type="dfn" href="#geofence-term">geofence</a> for a new
+  one.</p>
+    <p>A <a data-link-type="dfn" href="#geofence-term">geofence</a> has a <dfn data-dfn-type="dfn" data-noexport="" id="include-position">include position<a class="self-link" href="#include-position"></a></dfn> flag, a boolean indicating if events
+  associated with this <a data-link-type="dfn" href="#geofence-term">geofence</a> should include the exact geographic position.</p>
+    <p>A <dfn data-dfn-type="dfn" data-noexport="" id="geographic-region">geographic region<a class="self-link" href="#geographic-region"></a></dfn> is a circular region defined by a <a data-link-type="dfn" href="#geographic-coordinate">geographic
+  coordinate</a> representing the center of the region and a <dfn data-dfn-type="dfn" data-noexport="" id="radius">radius<a class="self-link" href="#radius"></a></dfn> representing
+  the size of the region.</p>
+    <p>The <dfn data-dfn-type="dfn" data-noexport="" id="geographic-coordinate">geographic coordinate<a class="self-link" href="#geographic-coordinate"></a></dfn> reference system used by the attributes in this API is
+  the World Geodetic System (2d) <a data-link-type="biblio" href="#biblio-wgs84">[WGS84]</a>. No other reference system is supported.</p>
+    <p>A <a data-link-type="dfn" href="#geofence-term">geofence</a> is said to be <dfn data-dfn-type="dfn" data-noexport="" id="breached">breached<a class="self-link" href="#breached"></a></dfn> if the current geographical location
+  changed from being inside the <a data-link-type="dfn" href="#geographic-region">geographic region</a> to outside (a <dfn data-dfn-type="dfn" data-noexport="" id="leave-event">leave
+  event<a class="self-link" href="#leave-event"></a></dfn>), or vice versa (an <dfn data-dfn-type="dfn" data-noexport="" id="enter-event">enter event<a class="self-link" href="#enter-event"></a></dfn>).</p>
    </section>
    <section>
-    <h2 class="heading settled" data-level="3" id="security-and-privacy-considerations"><span class="secno">3. </span><span class="content"> Security and privacy considerations </span><a class="self-link" href="#security-and-privacy-considerations"></a></h2>
-    <p> The same <a href="http://www.w3.org/TR/geolocation-API/#security">security and privacy
-        considerations</a> that apply to the Geolocation API <a data-link-type="biblio" href="#biblio-geolocation-api">[GEOLOCATION-API]</a> also apply to
-        this API. Furthermore since this API effectively gives access to geographic location
-        information after a user has stopped interacting with a webapp, a few other considerations
-        should be taken into account. </p>
+    <h2 class="heading settled" data-level="3" id="security-and-privacy-considerations"><span class="secno">3. </span><span class="content">Security and privacy considerations</span><a class="self-link" href="#security-and-privacy-considerations"></a></h2>
+    <p>The same <a href="http://www.w3.org/TR/geolocation-API/#security">security and privacy
+  considerations</a> that apply to the Geolocation API <a data-link-type="biblio" href="#biblio-geolocation-api">[GEOLOCATION-API]</a> also apply to
+  this API. Furthermore since this API effectively gives access to geographic location
+  information after a user has stopped interacting with a webapp, a few other considerations
+  should be taken into account.</p>
     <section>
      <h3 class="heading settled" data-level="3.1" id="privacy-considerations-for-implementers-of-the-geofencing-api"><span class="secno">3.1. </span><span class="content"> Privacy considerations for implementers of the Geofencing API </span><a class="self-link" href="#privacy-considerations-for-implementers-of-the-geofencing-api"></a></h3>
-     <p> TODO </p>
+     <p>TODO</p>
     </section>
     <section>
      <h3 class="heading settled" data-level="3.2" id="privacy-considerations-for-recipients-of-location-information"><span class="secno">3.2. </span><span class="content"> Privacy considerations for recipients of location information </span><a class="self-link" href="#privacy-considerations-for-recipients-of-location-information"></a></h3>
-     <p> TODO </p>
+     <p>TODO</p>
     </section>
     <section>
      <h3 class="heading settled" data-level="3.3" id="additional-implementation-considerations"><span class="secno">3.3. </span><span class="content"> Additional implementation considerations </span><a class="self-link" href="#additional-implementation-considerations"></a></h3>
-      <em>This section is non-normative.</em> 
-     <p> TODO </p>
+     <p><em>This section is non-normative.</em></p>
+     <p>TODO</p>
     </section>
    </section>
    <section>
-    <h2 class="heading settled" data-level="4" id="api-description"><span class="secno">4. </span><span class="content"> API Description </span><a class="self-link" href="#api-description"></a></h2>
+    <h2 class="heading settled" data-level="4" id="api-description"><span class="secno">4. </span><span class="content">API Description</span><a class="self-link" href="#api-description"></a></h2>
     <section>
      <h3 class="heading settled" data-level="4.1" id="extensions-to-the-serviceworkerregistration-interface"><span class="secno">4.1. </span><span class="content"> Extensions to the <code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-interface">ServiceWorkerRegistration</a></code> interface </span><a class="self-link" href="#extensions-to-the-serviceworkerregistration-interface"></a></h3>
-     <p> The Service Worker specification defines a <code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-interface">ServiceWorkerRegistration</a></code> interface, which
-          this specification extends. </p>
+     <p>The Service Worker specification defines a <code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-interface">ServiceWorkerRegistration</a></code> interface, which
+    this specification extends.</p>
 <pre class="idl">partial interface <a class="idl-code" data-link-type="interface" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-interface">ServiceWorkerRegistration</a> {
   readonly attribute <a data-link-type="idl-name" href="#geofencemanager">GeofenceManager</a> <dfn class="idl-code" data-dfn-for="ServiceWorkerRegistration" data-dfn-type="attribute" data-export="" data-readonly="" data-type="GeofenceManager " id="dom-serviceworkerregistration-geofencing">geofencing<a class="self-link" href="#dom-serviceworkerregistration-geofencing"></a></dfn>;
 };
 </pre>
     </section>
     <section>
-     <h3 class="heading settled" data-level="4.2" id="geofencemanager-interface"><span class="secno">4.2. </span><span class="content"> <code class="idl"><a data-link-type="idl" href="#geofencemanager">GeofenceManager</a></code> interface </span><a class="self-link" href="#geofencemanager-interface"></a></h3>
-     <p> The <code class="idl"><a data-link-type="idl" href="#geofencemanager">GeofenceManager</a></code> interface defines operations that enable <a data-link-type="dfn" href="#webapp" title="webapp">webapps</a> to establish access to geofencing services. </p>
+     <h3 class="heading settled" data-level="4.2" id="geofencemanager-interface"><span class="secno">4.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#geofencemanager">GeofenceManager</a></code> interface</span><a class="self-link" href="#geofencemanager-interface"></a></h3>
+     <p>The <code class="idl"><a data-link-type="idl" href="#geofencemanager">GeofenceManager</a></code> interface defines operations that enable <a data-link-type="dfn" href="#webapp" title="webapp">webapps</a> to establish access to geofencing services.</p>
 <pre class="idl">[NoInterfaceObject]
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geofencemanager">GeofenceManager<a class="self-link" href="#geofencemanager"></a></dfn> {
-  Promise&lt;<a data-link-type="idl-name" href="#geofence">Geofence</a>> <a class="idl-code" data-link-type="method" href="#dom-geofencemanager-add">add</a>(<a data-link-type="idl-name" href="#geofenceregion">GeofenceRegion</a> <dfn class="idl-code" data-dfn-for="GeofenceManager/add(initialRegion, options), GeofenceManager/add(initialRegion)" data-dfn-type="argument" data-export="" id="dom-geofencemanager-add-initialregion-options-initialregion">initialRegion<a class="self-link" href="#dom-geofencemanager-add-initialregion-options-initialregion"></a></dfn>, optional <a data-link-type="idl-name" href="#dictdef-geofenceoptions">GeofenceOptions</a>
-  <dfn class="idl-code" data-dfn-for="GeofenceManager/add(initialRegion, options), GeofenceManager/add(initialRegion)" data-dfn-type="argument" data-export="" id="dom-geofencemanager-add-initialregion-options-options">options<a class="self-link" href="#dom-geofencemanager-add-initialregion-options-options"></a></dfn>);
+  Promise&lt;<a data-link-type="idl-name" href="#geofence">Geofence</a>> <a class="idl-code" data-link-type="method" href="#dom-geofencemanager-add">add</a>(<a data-link-type="idl-name" href="#geofenceregion">GeofenceRegion</a> <dfn class="idl-code" data-dfn-for="GeofenceManager/add(initialRegion, options), GeofenceManager/add(initialRegion)" data-dfn-type="argument" data-export="" id="dom-geofencemanager-add-initialregion-options-initialregion">initialRegion<a class="self-link" href="#dom-geofencemanager-add-initialregion-options-initialregion"></a></dfn>, optional <a data-link-type="idl-name" href="#dictdef-geofenceoptions">GeofenceOptions</a> <dfn class="idl-code" data-dfn-for="GeofenceManager/add(initialRegion, options), GeofenceManager/add(initialRegion)" data-dfn-type="argument" data-export="" id="dom-geofencemanager-add-initialregion-options-options">options<a class="self-link" href="#dom-geofencemanager-add-initialregion-options-options"></a></dfn>);
   Promise&lt;sequence&lt;<a data-link-type="idl-name" href="#geofence">Geofence</a>>> <a class="idl-code" data-link-type="method" href="#dom-geofencemanager-getall">getAll</a>(optional <a data-link-type="idl-name" href="#dictdef-geofencequeryoptions">GeofenceQueryOptions</a> <dfn class="idl-code" data-dfn-for="GeofenceManager/getAll(options), GeofenceManager/getAll()" data-dfn-type="argument" data-export="" id="dom-geofencemanager-getall-options-options">options<a class="self-link" href="#dom-geofencemanager-getall-options-options"></a></dfn>);
   Promise&lt;<a data-link-type="idl-name" href="#geofence">Geofence</a>> <a class="idl-code" data-link-type="method" href="#dom-geofencemanager-getbyid">getById</a>(DOMString <dfn class="idl-code" data-dfn-for="GeofenceManager/getById(id)" data-dfn-type="argument" data-export="" id="dom-geofencemanager-getbyid-id-id">id<a class="self-link" href="#dom-geofencemanager-getbyid-id-id"></a></dfn>);
 };
@@ -1011,89 +1035,88 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
   DOMString? <dfn class="idl-code" data-dfn-for="GeofenceQueryOptions" data-dfn-type="dict-member" data-export="" data-type="DOMString? " id="dom-geofencequeryoptions-name">name<a class="self-link" href="#dom-geofencequeryoptions-name"></a></dfn>;
 };
 </pre>
-     <p> The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" data-lt="add(initialRegion, options)|add(initialRegion)" id="dom-geofencemanager-add" title="add(initialRegion, options)"> add(<var>initialRegion</var>, <var>options</var>)<a class="self-link" href="#dom-geofencemanager-add"></a></dfn></code> method when invoked MUST run the following steps: </p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" data-lt="add(initialRegion, options)|add(initialRegion)" id="dom-geofencemanager-add" title="add(initialRegion, options)"> add(<var>initialRegion</var>, <var>options</var>)<a class="self-link" href="#dom-geofencemanager-add"></a></dfn></code> method when invoked MUST run
+    the following steps:</p>
      <ol>
-      <li>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
+      <li> Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
       <li>
-       Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
+        Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
        <ol>
-        <li>If the total number of <a data-link-type="dfn" href="#active-geofences">active geofences</a> for all <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept" title="service worker registration">service worker registrations</a> in the current origin
-              is more than a <a data-link-type="dfn" href="#user-agent">user agent</a> defined limit, reject <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#quotaexceedederror">QuotaExceededError</a></code> and terminate these substeps. A <a data-link-type="dfn" href="#user-agent">user
-              agent</a> SHOULD allow at least 20 <a data-link-type="dfn" href="#active-geofences">active geofences</a> for an origin. 
-        <li>Ask the user whether they allow the <a data-link-type="dfn" href="#webapp">webapp</a> to use geofences, unless a
-              prearranged trust relationship applies or the user has already granted or denied
-              permission explicitly for this <a data-link-type="dfn" href="#webapp">webapp</a>. 
-        <li>If not granted, reject <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#exceptdef-permissiondeniederror">PermissionDeniedError</a></code> and terminate these substeps. 
-        <li>Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term">geofence</a>. 
-        <li>Set the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of the <var>geofence</var> to a newly generated value. 
-        <li>Set the <a data-link-type="dfn" href="#geographic-region">geographic region</a> of the <var>geofence</var> to a <code class="idl"><a data-link-type="idl" href="#geofenceregion">GeofenceRegion</a></code> instance of the same type and with the same
-              attributes as the <var>initialRegion</var> passed to <code>add</code>. 
-        <li>Set the <a data-link-type="dfn" href="#include-position">include position</a> flag of the <var>geofence</var> to <var>options.includePosition</var>, or <code>false</code> if no options were
-              specified. 
-        <li>Add <var>geofence</var> to the <a data-link-type="dfn" href="#active-geofences">active geofences</a> of the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker
-              registration</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a>. 
-        <li>If the current geographic position is inside the newly added region, <a data-link-type="dfn" href="#fire-a-geofence-event">fire a geofenceenter event</a>. 
-        <li>Resolve <var>promise</var> with a new <code><a data-link-type="dfn" href="#geofence-term">Geofence</a></code> instance
-              representing the <var>geofence</var>. 
+        <li> If the total number of <a data-link-type="dfn" href="#active-geofences">active geofences</a> for all <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registrations</a> in the current origin
+            is more than a <a data-link-type="dfn" href="#user-agent">user agent</a> defined limit, reject <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#quotaexceedederror">QuotaExceededError</a></code> and terminate these substeps. A <a data-link-type="dfn" href="#user-agent">user agent</a> SHOULD allow at
+            least 20 <a data-link-type="dfn" href="#active-geofences">active geofences</a> for an origin. 
+        <li> Ask the user whether they allow the <a data-link-type="dfn" href="#webapp">webapp</a> to use geofences, unless a
+            prearranged trust relationship applies or the user has already granted or denied
+            permission explicitly for this <a data-link-type="dfn" href="#webapp">webapp</a>. 
+        <li> If not granted, reject <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#exceptdef-permissiondeniederror">PermissionDeniedError</a></code> and terminate these substeps. 
+        <li> Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term">geofence</a>. 
+        <li> Set the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of the <var>geofence</var> to a newly generated value. 
+        <li> Set the <a data-link-type="dfn" href="#geographic-region">geographic region</a> of the <var>geofence</var> to a <code class="idl"><a data-link-type="idl" href="#geofenceregion">GeofenceRegion</a></code> instance of the same type and with the same
+            attributes as the <var>initialRegion</var> passed to <code>add</code>. 
+        <li> Set the <a data-link-type="dfn" href="#include-position">include position</a> flag of the <var>geofence</var> to <var>options.includePosition</var>, or <code>false</code> if no options were
+            specified. 
+        <li> Add <var>geofence</var> to the <a data-link-type="dfn" href="#active-geofences">active geofences</a> of the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker
+            registration</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a>. 
+        <li> If the current geographic position is inside the newly added region, <a data-link-type="dfn" href="#fire-a-geofence-event">fire a geofenceenter event</a>. 
+        <li> Resolve <var>promise</var> with a new <code><a data-link-type="dfn" href="#geofence-term">Geofence</a></code> instance
+            representing the <var>geofence</var>. 
        </ol>
-      <li>Return <var>promise</var>. 
+      <li> Return <var>promise</var>. 
      </ol>
-     <p class="issue" id="issue-a2ee5822"><a class="self-link" href="#issue-a2ee5822"></a> Somehow mention that the region that is saved as part of the registration can be slightly
-          different from the region passed to register. An implementation may adjust parameters to
-          be in range of what is possible, or otherwise modify the region. </p>
-     <p class="note" role="note"> The iOS API takes a slightly different approach when permission is denied. It instead
-          always treats registrations as a success, but won’t actually track geofences/trigger
-          events unless the user has granted permission. </p>
-     <p> If the <code><dfn class="idl-code" data-dfn-for="GeofenceOptions" data-dfn-type="dict-member" data-export="" id="dom-geofenceoptions-includeposition" title="includePosition">includePosition<a class="self-link" href="#dom-geofenceoptions-includeposition"></a></dfn></code> attribute is set to true, <code class="idl"><a data-link-type="idl" href="#geofenceevent">GeofenceEvent</a></code>s for this registration will
-          have a <code class="idl"><a data-link-type="idl" href="#dom-geofenceevent-position">position</a></code> attribute. When
-          set to false, the <code class="idl"><a data-link-type="idl" href="#dom-geofenceevent-position">position</a></code> attribute will always be undefined. </p>
-     <p> The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" data-lt="getAll(options)|getAll()" id="dom-geofencemanager-getall" titlt="getAll(options)">getAll(<var>options</var>)<a class="self-link" href="#dom-geofencemanager-getall"></a></dfn></code> method when invoked MUST run the following steps: </p>
+     <p class="issue" id="issue-8ae02316"><a class="self-link" href="#issue-8ae02316"></a> Somehow mention that the region that is saved as part of the registration can be slightly
+    different from the region passed to register. An implementation may adjust parameters to
+    be in range of what is possible, or otherwise modify the region.</p>
+     <p class="note" role="note">NOTE: The iOS API takes a slightly different approach when permission is denied. It instead
+    always treats registrations as a success, but won’t actually track geofences/trigger
+    events unless the user has granted permission.</p>
+     <p>If the <code><dfn class="idl-code" data-dfn-for="GeofenceOptions" data-dfn-type="dict-member" data-export="" id="dom-geofenceoptions-includeposition" title="includePosition">includePosition<a class="self-link" href="#dom-geofenceoptions-includeposition"></a></dfn></code> attribute is set to true, <code class="idl"><a data-link-type="idl" href="#geofenceevent">GeofenceEvent</a></code>s for this registration will have a <code class="idl"><a data-link-type="idl" href="#dom-geofenceevent-position">position</a></code> attribute. When set to false, the <code class="idl"><a data-link-type="idl" href="#dom-geofenceevent-position">position</a></code> attribute will always be undefined.</p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" data-lt="getAll(options)|getAll()" id="dom-geofencemanager-getall" titlt="getAll(options)">getAll(<var>options</var>)<a class="self-link" href="#dom-geofencemanager-getall"></a></dfn></code> method when invoked MUST run the following steps:</p>
      <ol>
-      <li>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
+      <li> Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
       <li>
-       Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
+        Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
        <ol>
-        <li>Let <var>geofences</var> be a new sequence. 
+        <li> Let <var>geofences</var> be a new sequence. 
         <li>
-         For each <a data-link-type="dfn" href="#geofence-term">geofence</a> in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with this <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, run the following substeps: 
+          For each <a data-link-type="dfn" href="#geofence-term">geofence</a> in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with this <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, run the following substeps: 
          <ol>
-          <li>If <var>options</var> is passed, has a non-null <var>name</var> attribute,
-                  and that <var>name</var> is not equal to the name of the <var>geofence</var>,
-                  skip the rest of these substeps and continue with the next registration. 
-          <li>Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term"><code>Geofence</code></a> instance
-                  representing the <var>geofence</var>. 
-          <li>Append <var>geofence</var> to <var>geofences</var>. 
+          <li> If <var>options</var> is passed, has a non-null <var>name</var> attribute,
+                and that <var>name</var> is not equal to the name of the <var>geofence</var>,
+                skip the rest of these substeps and continue with the next registration. 
+          <li> Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term"><code>Geofence</code></a> instance
+                representing the <var>geofence</var>. 
+          <li> Append <var>geofence</var> to <var>geofences</var>. 
          </ol>
-        <li>Resolve <var>promise</var> with <var>geofences</var>. 
+        <li> Resolve <var>promise</var> with <var>geofences</var>. 
        </ol>
-      <li>Return <var>promise</var>. 
+      <li> Return <var>promise</var>. 
      </ol>
-     <p> The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" id="dom-geofencemanager-getbyid" title="getById(id)">getById(<var>id</var>)<a class="self-link" href="#dom-geofencemanager-getbyid"></a></dfn></code> method
-          when invoked MUST run the following steps: </p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" id="dom-geofencemanager-getbyid" title="getById(id)">getById(<var>id</var>)<a class="self-link" href="#dom-geofencemanager-getbyid"></a></dfn></code> method
+    when invoked MUST run the following steps:</p>
      <ol>
-      <li>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
+      <li> Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
       <li>
-       Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
+        Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
        <ol>
         <li>
-         For each <a data-link-type="dfn" href="#geofence-term">geofence</a> in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with this <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, run the following substeps: 
+          For each <a data-link-type="dfn" href="#geofence-term">geofence</a> in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with this <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, run the following substeps: 
          <ol>
-          <li>If the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of the current <var>geofence</var> is not equal to
-                  the passed in <var>id</var>, skip the rest of these substeps and continue with
-                  the next geofence. 
-          <li>Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term"><code>Geofence</code></a> instance with
-                  attributes equal to those of the <var>geofence</var>. 
-          <li>Resolve <var>promise</var> with <var>geofence</var> and abort the remainder
-                  of these substeps. 
+          <li> If the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of the current <var>geofence</var> is not equal to
+                the passed in <var>id</var>, skip the rest of these substeps and continue with
+                the next geofence. 
+          <li> Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term"><code>Geofence</code></a> instance with
+                attributes equal to those of the <var>geofence</var>. 
+          <li> Resolve <var>promise</var> with <var>geofence</var> and abort the remainder
+                of these substeps. 
          </ol>
-        <li>If <var>promise</var> was not resolved, resolve <var>promise</var> with <code>null</code>. 
+        <li> If <var>promise</var> was not resolved, resolve <var>promise</var> with <code>null</code>. 
        </ol>
-      <li>Return <var>promise</var>. 
+      <li> Return <var>promise</var>. 
      </ol>
     </section>
     <section>
-     <h3 class="heading settled" data-level="4.3" id="geofence-interface"><span class="secno">4.3. </span><span class="content"> <a data-link-type="dfn" href="#geofence-term">Geofence</a> interface </span><a class="self-link" href="#geofence-interface"></a></h3>
-     <p> An instance of the <code class="idl"><a data-link-type="idl" href="#geofence">Geofence</a></code> interface represents a <a data-link-type="dfn" href="#geofence-term">geofence</a>. </p>
+     <h3 class="heading settled" data-level="4.3" id="geofence-interface"><span class="secno">4.3. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#geofence">Geofence</a></code> interface</span><a class="self-link" href="#geofence-interface"></a></h3>
+     <p>An instance of the <code class="idl"><a data-link-type="idl" href="#geofence">Geofence</a></code> interface represents a <a data-link-type="dfn" href="#geofence-term">geofence</a>.</p>
 <pre class="idl">[Exposed=(Window,Worker)]
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geofence">Geofence<a class="self-link" href="#geofence"></a></dfn> {
   readonly attribute DOMString <a class="idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString " href="#dom-geofence-id">id</a>;
@@ -1101,27 +1124,27 @@ interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geo
   Promise&lt;boolean> <a class="idl-code" data-link-type="method" href="#dom-geofence-remove">remove</a>();
 };
 </pre>
-     <p> When getting the <code><dfn class="idl-code" data-dfn-for="Geofence" data-dfn-type="attribute" data-export="" id="dom-geofence-id" title="id">id<a class="self-link" href="#dom-geofence-id"></a></dfn></code> attribute, the <a data-link-type="dfn" href="#user-agent">user
-          agent</a> MUST return the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of the <a data-link-type="dfn" href="#geofence-term">geofence</a>. </p>
-     <p> When getting the <code><dfn class="idl-code" data-dfn-for="Geofence" data-dfn-type="attribute" data-export="" id="dom-geofence-region" title="region">region<a class="self-link" href="#dom-geofence-region"></a></dfn></code> attribute, the <a data-link-type="dfn" href="#user-agent">user agent</a> MUST return the <a data-link-type="dfn" href="#geographic-region">geographic region</a> of this <a data-link-type="dfn" href="#geofence-term">geofence</a>. </p>
-     <p> The <code><dfn class="idl-code" data-dfn-for="Geofence" data-dfn-type="method" data-export="" id="dom-geofence-remove" title="remove()">remove()<a class="self-link" href="#dom-geofence-remove"></a></dfn></code> method when
-          invoked MUST run the following steps: </p>
+     <p>When getting the <code><dfn class="idl-code" data-dfn-for="Geofence" data-dfn-type="attribute" data-export="" id="dom-geofence-id" title="id">id<a class="self-link" href="#dom-geofence-id"></a></dfn></code> attribute, the <a data-link-type="dfn" href="#user-agent">user
+    agent</a> MUST return the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of the <a data-link-type="dfn" href="#geofence-term">geofence</a>.</p>
+     <p>When getting the <code><dfn class="idl-code" data-dfn-for="Geofence" data-dfn-type="attribute" data-export="" id="dom-geofence-region" title="region">region<a class="self-link" href="#dom-geofence-region"></a></dfn></code> attribute, the <a data-link-type="dfn" href="#user-agent">user agent</a> MUST return the <a data-link-type="dfn" href="#geographic-region">geographic region</a> of this <a data-link-type="dfn" href="#geofence-term">geofence</a>.</p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="Geofence" data-dfn-type="method" data-export="" id="dom-geofence-remove" title="remove()">remove()<a class="self-link" href="#dom-geofence-remove"></a></dfn></code> method when
+    invoked MUST run the following steps:</p>
      <ol>
-      <li>Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
+      <li> Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
       <li>
-       Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
+        Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
        <ol>
-        <li>If this <a data-link-type="dfn" href="#geofence-term">geofence</a> is not currently in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with a <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, resolve <var>promise</var> with <code>false</code> and abort the remainder of these steps. 
-        <li>Remove this <a data-link-type="dfn" href="#geofence-term">geofence</a> from the set of <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated
-              with the current <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>. No more events related to this
-              geofence will be fired after this. 
-        <li>Resolve <var>promise</var> with <code>true</code>. 
+        <li> If this <a data-link-type="dfn" href="#geofence-term">geofence</a> is not currently in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with a <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, resolve <var>promise</var> with <code>false</code> and abort the remainder of these steps. 
+        <li> Remove this <a data-link-type="dfn" href="#geofence-term">geofence</a> from the set of <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated
+            with the current <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>. No more events related to this
+            geofence will be fired after this. 
+        <li> Resolve <var>promise</var> with <code>true</code>. 
        </ol>
-      <li>Return <var>promise</var>. 
+      <li> Return <var>promise</var>. 
      </ol>
     </section>
     <section>
-     <h3 class="heading settled" data-level="4.4" id="geofenceregion-interface"><span class="secno">4.4. </span><span class="content"> <code class="idl"><a data-link-type="idl" href="#geofenceregion">GeofenceRegion</a></code> interface </span><a class="self-link" href="#geofenceregion-interface"></a></h3>
+     <h3 class="heading settled" data-level="4.4" id="geofenceregion-interface"><span class="secno">4.4. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#geofenceregion">GeofenceRegion</a></code> interface</span><a class="self-link" href="#geofenceregion-interface"></a></h3>
 <pre class="idl">[Exposed=(Window,Worker)]
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geofenceregion">GeofenceRegion<a class="self-link" href="#geofenceregion"></a></dfn> {
   readonly attribute DOMString <a class="idl-code" data-link-type="attribute" data-readonly="" data-type="DOMString " href="#dom-geofenceregion-name">name</a>;
@@ -1131,15 +1154,16 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
   DOMString? <dfn class="idl-code" data-dfn-for="GeofenceRegionInit" data-dfn-type="dict-member" data-export="" data-type="DOMString? " id="dom-geofenceregioninit-name">name<a class="self-link" href="#dom-geofenceregioninit-name"></a></dfn>;
 };
 </pre>
-     <p> The <code><dfn class="idl-code" data-dfn-for="GeofenceRegion" data-dfn-type="attribute" data-export="" id="dom-geofenceregion-name" title="name">name<a class="self-link" href="#dom-geofenceregion-name"></a></dfn></code> attribute MUST return the value it was
-          initialized to. When the object is created, this attribute MUST be set to the value of
-          the <code class="idl"><a data-link-type="idl" href="#dom-geofenceregioninit-name">name</a></code> property in the <code class="idl"><a data-link-type="idl" href="#dictdef-geofenceregioninit">GeofenceRegionInit</a></code> dictionary, or an empty string if that property
-          wasn’t set. A <a data-link-type="dfn" href="#user-agent">user agent</a> MAY impose limits on the maximum size of the <code class="idl"><a data-link-type="idl" href="#dom-geofenceregion-name">name</a></code> attribute. If this limit is exceeded the constructor MUST
-          throw a <code class="idl"><a data-link-type="idl" href="http://www.ecma-international.org/ecma-262/6.0/#sec-native-error-types-used-in-this-standard-rangeerror">RangeError</a></code>. If a <a data-link-type="dfn" href="#user-agent">user agent</a> imposes a limit on the size of the name
-          attribute, this limit SHOULD allow for at least 100 characters. </p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="GeofenceRegion" data-dfn-type="attribute" data-export="" id="dom-geofenceregion-name" title="name">name<a class="self-link" href="#dom-geofenceregion-name"></a></dfn></code> attribute MUST return
+    the value it was initialized to. When the object is created, this attribute MUST be set to the
+    value of the <code class="idl"><a data-link-type="idl" href="#dom-geofenceregioninit-name">name</a></code> property in the <code class="idl"><a data-link-type="idl" href="#dictdef-geofenceregioninit">GeofenceRegionInit</a></code> dictionary, or
+    an empty string if that property wasn’t set. A <a data-link-type="dfn" href="#user-agent">user agent</a> MAY impose limits on the
+    maximum size of the <code class="idl"><a data-link-type="idl" href="#dom-geofenceregion-name">name</a></code> attribute. If this limit is exceeded the constructor
+    MUST throw a <code class="idl"><a data-link-type="idl" href="http://www.ecma-international.org/ecma-262/6.0/#sec-native-error-types-used-in-this-standard-rangeerror">RangeError</a></code>. If a <a data-link-type="dfn" href="#user-agent">user agent</a> imposes a limit on the size of the name
+    attribute, this limit SHOULD allow for at least 100 characters.</p>
     </section>
     <section>
-     <h3 class="heading settled" data-level="4.5" id="circulargeofenceregion-interface"><span class="secno">4.5. </span><span class="content"> <code class="idl"><a data-link-type="idl" href="#circulargeofenceregion">CircularGeofenceRegion</a></code> interface </span><a class="self-link" href="#circulargeofenceregion-interface"></a></h3>
+     <h3 class="heading settled" data-level="4.5" id="circulargeofenceregion-interface"><span class="secno">4.5. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#circulargeofenceregion">CircularGeofenceRegion</a></code> interface</span><a class="self-link" href="#circulargeofenceregion-interface"></a></h3>
 <pre class="idl">[<dfn class="idl-code" data-dfn-for="CircularGeofenceRegion" data-dfn-type="constructor" data-export="" data-lt="CircularGeofenceRegion(init)" id="dom-circulargeofenceregion-circulargeofenceregion">Constructor<a class="self-link" href="#dom-circulargeofenceregion-circulargeofenceregion"></a></dfn>(<a data-link-type="idl-name" href="#dictdef-circulargeofenceregioninit">CircularGeofenceRegionInit</a> <dfn class="idl-code" data-dfn-for="CircularGeofenceRegion/CircularGeofenceRegion(init)" data-dfn-type="argument" data-export="" id="dom-circulargeofenceregion-circulargeofenceregion-init-init">init<a class="self-link" href="#dom-circulargeofenceregion-circulargeofenceregion-init-init"></a></dfn>), Exposed=(Window,Worker)]
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="circulargeofenceregion">CircularGeofenceRegion<a class="self-link" href="#circulargeofenceregion"></a></dfn> : <a data-link-type="idl-name" href="#geofenceregion">GeofenceRegion</a> {
   readonly attribute double <a class="idl-code" data-link-type="attribute" data-readonly="" data-type="double " href="#dom-circulargeofenceregion-latitude">latitude</a>;
@@ -1153,68 +1177,66 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
   double <dfn class="idl-code" data-dfn-for="CircularGeofenceRegionInit" data-dfn-type="dict-member" data-export="" data-type="double " id="dom-circulargeofenceregioninit-radius">radius<a class="self-link" href="#dom-circulargeofenceregioninit-radius"></a></dfn>;
 };
 </pre>
-     <p> The <code class="idl"><a data-link-type="idl" href="#circulargeofenceregion">CircularGeofenceRegion</a></code> constructor when invoked
-          MUST run the following steps: </p>
+     <p>The <code class="idl"><a data-link-type="idl" href="#circulargeofenceregion">CircularGeofenceRegion</a></code> constructor when invoked MUST run the following steps:</p>
      <ol>
-      <li>If <var>init.latitude</var> is less than <code>-90</code> or greater than <code>90</code>, throw a <code class="idl"><a data-link-type="idl" href="http://www.ecma-international.org/ecma-262/6.0/#sec-native-error-types-used-in-this-standard-rangeerror">RangeError</a></code>. 
-      <li>If <var>init.longitude</var> is less than <code>-180</code> or greater than <code>180</code>, throw a <code class="idl"><a data-link-type="idl" href="http://www.ecma-international.org/ecma-262/6.0/#sec-native-error-types-used-in-this-standard-rangeerror">RangeError</a></code>. 
-      <li>Set the <var>latitude</var>, <var>longitude</var> and <var>radius</var> attributes of
-          the newly created <code class="idl"><a data-link-type="idl" href="#circulargeofenceregion">CircularGeofenceRegion</a></code> instance to the same values as
-          those in the initializer. 
+      <li> If <var>init.latitude</var> is less than <code>-90</code> or greater than <code>90</code>, throw a <code class="idl"><a data-link-type="idl" href="http://www.ecma-international.org/ecma-262/6.0/#sec-native-error-types-used-in-this-standard-rangeerror">RangeError</a></code>. 
+      <li> If <var>init.longitude</var> is less than <code>-180</code> or greater than <code>180</code>, throw a <code class="idl"><a data-link-type="idl" href="http://www.ecma-international.org/ecma-262/6.0/#sec-native-error-types-used-in-this-standard-rangeerror">RangeError</a></code>. 
+      <li> Set the <var>latitude</var>, <var>longitude</var> and <var>radius</var> attributes of
+        the newly created <code class="idl"><a data-link-type="idl" href="#circulargeofenceregion">CircularGeofenceRegion</a></code> instance to the same values as
+        those in the initializer. 
      </ol>
-     <p> The <code><dfn class="idl-code" data-dfn-for="CircularGeofenceRegion" data-dfn-type="attribute" data-export="" id="dom-circulargeofenceregion-latitude" title="latitude">latitude<a class="self-link" href="#dom-circulargeofenceregion-latitude"></a></dfn></code> attribute
-          MUST return the value it was intialized to. This value represents the latitude in
-          circular degrees of the center of the circular region. </p>
-     <p> The <code><dfn class="idl-code" data-dfn-for="CircularGeofenceRegion" data-dfn-type="attribute" data-export="" id="dom-circulargeofenceregion-longitude" title="longitude">longitude<a class="self-link" href="#dom-circulargeofenceregion-longitude"></a></dfn></code> attribute MUST return the value it was intialized to. This value represents the longitude
-          in circular degrees of the center of the circular region. </p>
-     <p class="issue" id="issue-768d110e"><a class="self-link" href="#issue-768d110e"></a> The downside of doing error checks in the CircularGeofenceRegion constructor is that they
-          will be actual exceptions instead of promise rejections when calling add. Would it make
-          sense to move the validity checks to add? </p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="CircularGeofenceRegion" data-dfn-type="attribute" data-export="" id="dom-circulargeofenceregion-latitude" title="latitude">latitude<a class="self-link" href="#dom-circulargeofenceregion-latitude"></a></dfn></code> attribute
+    MUST return the value it was intialized to. This value represents the latitude in
+    circular degrees of the center of the circular region.</p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="CircularGeofenceRegion" data-dfn-type="attribute" data-export="" id="dom-circulargeofenceregion-longitude" title="longitude">longitude<a class="self-link" href="#dom-circulargeofenceregion-longitude"></a></dfn></code> attribute MUST return the value it was intialized to. This value represents the longitude
+    in circular degrees of the center of the circular region.</p>
+     <p class="issue" id="issue-fa341bc0"><a class="self-link" href="#issue-fa341bc0"></a> The downside of doing error checks in the CircularGeofenceRegion constructor is that they
+    will be actual exceptions instead of promise rejections when calling add. Would it make
+    sense to move the validity checks to add?</p>
     </section>
     <section>
-     <h3 class="heading settled" data-level="4.6" id="events"><span class="secno">4.6. </span><span class="content"> Events </span><a class="self-link" href="#events"></a></h3>
-     <p> The Service Worker specification defines a <code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-global-scope-interface">ServiceWorkerGlobalScope</a></code> interface, which this
-          specification extends. </p>
+     <h3 class="heading settled" data-level="4.6" id="events"><span class="secno">4.6. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h3>
+     <p>The Service Worker specification defines a <code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-global-scope-interface">ServiceWorkerGlobalScope</a></code> interface, which this
+    specification extends.</p>
 <pre class="idl">partial interface <a class="idl-code" data-link-type="interface" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-global-scope-interface">ServiceWorkerGlobalScope</a> {
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler " href="#dom-serviceworkerglobalscope-ongeofenceenter">ongeofenceenter</a>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler " href="#dom-serviceworkerglobalscope-ongeofenceleave">ongeofenceleave</a>;
   attribute <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="idl-code" data-link-type="attribute" data-type="EventHandler " href="#dom-serviceworkerglobalscope-ongeofenceerror">ongeofenceerror</a>;
 };
 </pre>
-     <p> The <code><dfn class="idl-code" data-dfn-for="ServiceWorkerGlobalScope" data-dfn-type="attribute" data-export="" id="dom-serviceworkerglobalscope-ongeofenceenter" title="ongeofenceenter">ongeofenceenter<a class="self-link" href="#dom-serviceworkerglobalscope-ongeofenceenter"></a></dfn></code> attribute is
-          an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a> whose corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a> is <code>geofenceenter</code>. </p>
-     <p> The <code><dfn class="idl-code" data-dfn-for="ServiceWorkerGlobalScope" data-dfn-type="attribute" data-export="" id="dom-serviceworkerglobalscope-ongeofenceleave" title="ongeofenceleave">ongeofenceleave<a class="self-link" href="#dom-serviceworkerglobalscope-ongeofenceleave"></a></dfn></code> attribute is
-          an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a> whose corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a> is <code>geofenceleave</code>. </p>
-     <p> The <code><dfn class="idl-code" data-dfn-for="ServiceWorkerGlobalScope" data-dfn-type="attribute" data-export="" id="dom-serviceworkerglobalscope-ongeofenceerror" title="ongeofenceerror">ongeofenceerror<a class="self-link" href="#dom-serviceworkerglobalscope-ongeofenceerror"></a></dfn></code> attribute is
-          an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a> whose corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a> is <code>geofenceerror</code>. </p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="ServiceWorkerGlobalScope" data-dfn-type="attribute" data-export="" id="dom-serviceworkerglobalscope-ongeofenceenter" title="ongeofenceenter">ongeofenceenter<a class="self-link" href="#dom-serviceworkerglobalscope-ongeofenceenter"></a></dfn></code> attribute is
+    an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a> whose corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a> is <code>geofenceenter</code>.</p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="ServiceWorkerGlobalScope" data-dfn-type="attribute" data-export="" id="dom-serviceworkerglobalscope-ongeofenceleave" title="ongeofenceleave">ongeofenceleave<a class="self-link" href="#dom-serviceworkerglobalscope-ongeofenceleave"></a></dfn></code> attribute is
+    an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a> whose corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a> is <code>geofenceleave</code>.</p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="ServiceWorkerGlobalScope" data-dfn-type="attribute" data-export="" id="dom-serviceworkerglobalscope-ongeofenceerror" title="ongeofenceerror">ongeofenceerror<a class="self-link" href="#dom-serviceworkerglobalscope-ongeofenceerror"></a></dfn></code> attribute is
+    an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a> whose corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a> is <code>geofenceerror</code>.</p>
      <section>
       <h4 class="heading settled" data-level="4.6.1" id="the-geofenceenter-and-geofenceleave-events"><span class="secno">4.6.1. </span><span class="content"> The <code>geofenceenter</code> and <code>geofenceleave</code> events </span><a class="self-link" href="#the-geofenceenter-and-geofenceleave-events"></a></h4>
-      <p> The <code class="idl"><a data-link-type="idl" href="#geofenceevent">GeofenceEvent</a></code> interface represents a geofence being <a data-link-type="dfn" href="#breached">breached</a>. </p>
+      <p>The <code class="idl"><a data-link-type="idl" href="#geofenceevent">GeofenceEvent</a></code> interface represents a geofence being <a data-link-type="dfn" href="#breached">breached</a>.</p>
 <pre class="idl">[Exposed=ServiceWorker]
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geofenceevent">GeofenceEvent<a class="self-link" href="#geofenceevent"></a></dfn> : <a data-link-type="idl-name" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#extendable-event-interface">ExtendableEvent</a> {
   readonly attribute <a data-link-type="idl-name" href="#geofence">Geofence</a> <dfn class="idl-code" data-dfn-for="GeofenceEvent" data-dfn-type="attribute" data-export="" data-readonly="" data-type="Geofence " id="dom-geofenceevent-geofence">geofence<a class="self-link" href="#dom-geofenceevent-geofence"></a></dfn>;
   readonly attribute <a data-link-type="idl-name" href="http://www.w3.org/TR/geolocation-API/#position_interface">Position</a>? <dfn class="idl-code" data-dfn-for="GeofenceEvent" data-dfn-type="attribute" data-export="" data-readonly="" data-type="Position? " id="dom-geofenceevent-position">position<a class="self-link" href="#dom-geofenceevent-position"></a></dfn>;
 };
 </pre>
-      <p> Upon detecting a <a data-link-type="dfn" href="#breached" title="breached">breach</a> of a <a data-link-type="dfn" href="#geofence-term">geofence</a>, the <a data-link-type="dfn" href="#user-agent">user
-            agent</a> MUST run the following steps to <dfn data-dfn-type="dfn" data-noexport="" id="fire-a-geofence-event">fire a geofence event<a class="self-link" href="#fire-a-geofence-event"></a></dfn>: </p>
+      <p>Upon detecting a <a data-link-type="dfn" href="#breached" title="breached">breach</a> of a <a data-link-type="dfn" href="#geofence-term">geofence</a>, the <a data-link-type="dfn" href="#user-agent">user
+      agent</a> MUST run the following steps to <dfn data-dfn-type="dfn" data-noexport="" id="fire-a-geofence-event">fire a geofence event<a class="self-link" href="#fire-a-geofence-event"></a></dfn>:</p>
       <ol>
-       <li>If the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-concept">Service Worker</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a> is not running,
-            start it. 
-       <li>Let <var>scope</var> be the <code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-global-scope-interface">ServiceWorkerGlobalScope</a></code> of the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-concept">Service Worker</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a>. 
-       <li>Let <var>event</var> be a new <code class="idl"><a data-link-type="idl" href="#geofenceevent">GeofenceEvent</a></code>, whose <code>geofence</code> attribute is a new <code class="idl"><a data-link-type="idl" href="#geofence">Geofence</a></code> instance
-            representing the <a data-link-type="dfn" href="#geofence-term">geofence</a> that was <a data-link-type="dfn" href="#breached">breached</a>. 
-       <li>If the geofences <a data-link-type="dfn" href="#include-position">include position</a> flag is true, set <var>event.position</var> to the current geographical position. 
-       <li>Let <var>eventName</var> be <code>geofenceenter</code> or <code>geofenceleave</code>, corresponding to the type of <a data-link-type="dfn" href="#breached" title="breached">breach</a> event being processed. 
+       <li> If the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-concept">Service Worker</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a> is not running, start it. 
+       <li> Let <var>scope</var> be the <code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-global-scope-interface">ServiceWorkerGlobalScope</a></code> of the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-concept">Service Worker</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a>. 
+       <li> Let <var>event</var> be a new <code class="idl"><a data-link-type="idl" href="#geofenceevent">GeofenceEvent</a></code>, whose <code>geofence</code> attribute is a new <code class="idl"><a data-link-type="idl" href="#geofence">Geofence</a></code> instance
+          representing the <a data-link-type="dfn" href="#geofence-term">geofence</a> that was <a data-link-type="dfn" href="#breached">breached</a>. 
+       <li> If the geofences <a data-link-type="dfn" href="#include-position">include position</a> flag is true, set <var>event.position</var> to the current geographical position. 
+       <li> Let <var>eventName</var> be <code>geofenceenter</code> or <code>geofenceleave</code>, corresponding to the type of <a data-link-type="dfn" href="#breached" title="breached">breach</a> event being processed. 
        <li> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn">fire <var>event</var> as a
-              simple event</a> named <var>eventName</var> at <var>scope</var>. 
+          simple event</a> named <var>eventName</var> at <var>scope</var>. 
       </ol>
-      <p> The <a data-link-type="dfn" href="#user-agent">user agent</a> MAY wait with <a data-link-type="dfn" href="#fire-a-geofence-event">firing a geofence
-            event</a> until some time and/or distance has passed after the <a data-link-type="dfn" href="#breached" title="breached">breach</a> was detected before firing an event to make sure that the
-            geofence really was <a data-link-type="dfn" href="#breached">breached</a>. </p>
+      <p>The <a data-link-type="dfn" href="#user-agent">user agent</a> MAY wait with <a data-link-type="dfn" href="#fire-a-geofence-event">firing a geofence
+      event</a> until some time and/or distance has passed after the <a data-link-type="dfn" href="#breached" title="breached">breach</a> was detected before firing an event to make sure that the
+      geofence really was <a data-link-type="dfn" href="#breached">breached</a>.</p>
      </section>
      <section>
-      <h4 class="heading settled" data-level="4.6.2" id="geofenceerrorevent-section"><span class="secno">4.6.2. </span><span class="content"> <code class="idl"><a data-link-type="idl" href="#geofenceerrorevent">GeofenceErrorEvent</a></code> </span><a class="self-link" href="#geofenceerrorevent-section"></a></h4>
+      <h4 class="heading settled" data-level="4.6.2" id="geofenceerrorevent-section"><span class="secno">4.6.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#geofenceerrorevent">GeofenceErrorEvent</a></code></span><a class="self-link" href="#geofenceerrorevent-section"></a></h4>
 <pre class="idl">[Exposed=ServiceWorker]
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geofenceerrorevent">GeofenceErrorEvent<a class="self-link" href="#geofenceerrorevent"></a></dfn> : <a data-link-type="idl-name" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#extendable-event-interface">ExtendableEvent</a> {
   readonly attribute <a data-link-type="idl-name" href="#geofence">Geofence</a> <dfn class="idl-code" data-dfn-for="GeofenceErrorEvent" data-dfn-type="attribute" data-export="" data-readonly="" data-type="Geofence " id="dom-geofenceerrorevent-geofence">geofence<a class="self-link" href="#dom-geofenceerrorevent-geofence"></a></dfn>;
@@ -1222,28 +1244,27 @@ interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geo
   readonly attribute DOMString <dfn class="idl-code" data-dfn-for="GeofenceErrorEvent" data-dfn-type="attribute" data-export="" data-readonly="" data-type="DOMString " id="dom-geofenceerrorevent-message">message<a class="self-link" href="#dom-geofenceerrorevent-message"></a></dfn>;
 };
 </pre>
-      <p class="issue" id="issue-0e5f7cb4"><a class="self-link" href="#issue-0e5f7cb4"></a> This needs more work. I’m really not sure what attributes make sense to expose here.
-            Also I’m not sure if is desirable/okay for all errors to be fatal/cause the geofence to
-            be unmonitored. </p>
-      <p> Upon detecting some situation in which the <a data-link-type="dfn" href="#user-agent">user agent</a> won’t be able to detect
-            future <a data-link-type="dfn" href="#breached" title="breached">breached</a> of a <a data-link-type="dfn" href="#geofence-term">geofence</a>, the <a data-link-type="dfn" href="#user-agent">user agent</a> MUST run the following steps: </p>
+      <p class="issue" id="issue-07ab8dec"><a class="self-link" href="#issue-07ab8dec"></a> This needs more work. I’m really not sure what attributes make sense to expose here.
+      Also I’m not sure if is desirable/okay for all errors to be fatal/cause the geofence to
+      be unmonitored.</p>
+      <p>Upon detecting some situation in which the <a data-link-type="dfn" href="#user-agent">user agent</a> won’t be able to detect
+      future <a data-link-type="dfn" href="#breached" title="breached">breached</a> of a <a data-link-type="dfn" href="#geofence-term">geofence</a>, the <a data-link-type="dfn" href="#user-agent">user agent</a> MUST run the following steps:</p>
       <ol>
-       <li>If the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-concept">Service Worker</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a> is not running,
-            start it. 
-       <li>Let <var>scope</var> be the <code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-global-scope-interface">ServiceWorkerGlobalScope</a></code> of the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-concept">Service Worker</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a>. 
-       <li>Let <var>event</var> be a new <code class="idl"><a data-link-type="idl" href="#geofenceerrorevent">GeofenceErrorEvent</a></code>, whose <code class="idl"><a data-link-type="idl" href="#dom-geofenceerrorevent-geofence">geofence</a></code> attribute is a new <code class="idl"><a data-link-type="idl" href="#geofence">Geofence</a></code> instance representing the <a data-link-type="dfn" href="#geofence-term">geofence</a> for which an
-            error was detected. 
-       <li>Let <var>event.code</var> be an error code. 
-       <li>Let <var>event.message</var> be a descriptive message for the error that occurred. 
-       <li>Remove the <a data-link-type="dfn" href="#geofence-term">geofence</a> for which an error was detected from the set of <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with the current <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>. 
+       <li> If the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-concept">Service Worker</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a> is not running, start it. 
+       <li> Let <var>scope</var> be the <code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-global-scope-interface">ServiceWorkerGlobalScope</a></code> of the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-concept">Service Worker</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a>. 
+       <li> Let <var>event</var> be a new <code class="idl"><a data-link-type="idl" href="#geofenceerrorevent">GeofenceErrorEvent</a></code>, whose <code class="idl"><a data-link-type="idl" href="#dom-geofenceerrorevent-geofence">geofence</a></code> attribute is a new <code class="idl"><a data-link-type="idl" href="#geofence">Geofence</a></code> instance representing the <a data-link-type="dfn" href="#geofence-term">geofence</a> for which an
+          error was detected. 
+       <li> Let <var>event.code</var> be an error code. 
+       <li> Let <var>event.message</var> be a descriptive message for the error that occurred. 
+       <li> Remove the <a data-link-type="dfn" href="#geofence-term">geofence</a> for which an error was detected from the set of <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with the current <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>. 
        <li> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-link-type="dfn">fire <var>event</var> as a
-              simple event</a> named <code>geofenceerror</code> at <var>scope</var>. 
+          simple event</a> named <code>geofenceerror</code> at <var>scope</var>. 
       </ol>
      </section>
     </section>
    </section>
    <section>
-    <h2 class="heading settled" data-level="5" id="exceptions"><span class="secno">5. </span><span class="content"> Exceptions </span><a class="self-link" href="#exceptions"></a></h2>
+    <h2 class="heading settled" data-level="5" id="exceptions"><span class="secno">5. </span><span class="content">Exceptions</span><a class="self-link" href="#exceptions"></a></h2>
     <p>The Geofencing API uses the new <code><dfn class="idl-code" data-dfn-type="exception" data-export="" id="exceptdef-permissiondeniederror">PermissionDeniedError<a class="self-link" href="#exceptdef-permissiondeniederror"></a></dfn></code> <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException-error-names">DOMException</a></code> name.</p>
    </section>
   </main>
@@ -1331,7 +1352,7 @@ interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geo
      <li><a href="#dom-circulargeofenceregion-latitude">attribute for CircularGeofenceRegion</a><span>, in §4.5</span>
     </ul>
    <li><a href="#leave-event">leave
-        event</a><span>, in §2</span>
+  event</a><span>, in §2</span>
    <li>
     longitude
     <ul>
@@ -1439,8 +1460,7 @@ interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geo
 
 [NoInterfaceObject]
 interface <a href="#geofencemanager">GeofenceManager</a> {
-  Promise&lt;<a data-link-type="idl-name" href="#geofence">Geofence</a>> <a class="idl-code" data-link-type="method" href="#dom-geofencemanager-add">add</a>(<a data-link-type="idl-name" href="#geofenceregion">GeofenceRegion</a> <a href="#dom-geofencemanager-add-initialregion-options-initialregion">initialRegion</a>, optional <a data-link-type="idl-name" href="#dictdef-geofenceoptions">GeofenceOptions</a>
-  <a href="#dom-geofencemanager-add-initialregion-options-options">options</a>);
+  Promise&lt;<a data-link-type="idl-name" href="#geofence">Geofence</a>> <a class="idl-code" data-link-type="method" href="#dom-geofencemanager-add">add</a>(<a data-link-type="idl-name" href="#geofenceregion">GeofenceRegion</a> <a href="#dom-geofencemanager-add-initialregion-options-initialregion">initialRegion</a>, optional <a data-link-type="idl-name" href="#dictdef-geofenceoptions">GeofenceOptions</a> <a href="#dom-geofencemanager-add-initialregion-options-options">options</a>);
   Promise&lt;sequence&lt;<a data-link-type="idl-name" href="#geofence">Geofence</a>>> <a class="idl-code" data-link-type="method" href="#dom-geofencemanager-getall">getAll</a>(optional <a data-link-type="idl-name" href="#dictdef-geofencequeryoptions">GeofenceQueryOptions</a> <a href="#dom-geofencemanager-getall-options-options">options</a>);
   Promise&lt;<a data-link-type="idl-name" href="#geofence">Geofence</a>> <a class="idl-code" data-link-type="method" href="#dom-geofencemanager-getbyid">getById</a>(DOMString <a href="#dom-geofencemanager-getbyid-id-id">id</a>);
 };
@@ -1505,14 +1525,14 @@ interface <a href="#geofenceerrorevent">GeofenceErrorEvent</a> : <a data-link-ty
   <h2 class="no-num heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
    <div class="issue"> Somehow mention that the region that is saved as part of the registration can be slightly
-          different from the region passed to register. An implementation may adjust parameters to
-          be in range of what is possible, or otherwise modify the region. <a href="#issue-a2ee5822"> ↵ </a></div>
+    different from the region passed to register. An implementation may adjust parameters to
+    be in range of what is possible, or otherwise modify the region.<a href="#issue-8ae02316"> ↵ </a></div>
    <div class="issue"> The downside of doing error checks in the CircularGeofenceRegion constructor is that they
-          will be actual exceptions instead of promise rejections when calling add. Would it make
-          sense to move the validity checks to add? <a href="#issue-768d110e"> ↵ </a></div>
+    will be actual exceptions instead of promise rejections when calling add. Would it make
+    sense to move the validity checks to add?<a href="#issue-fa341bc0"> ↵ </a></div>
    <div class="issue"> This needs more work. I’m really not sure what attributes make sense to expose here.
-            Also I’m not sure if is desirable/okay for all errors to be fatal/cause the geofence to
-            be unmonitored. <a href="#issue-0e5f7cb4"> ↵ </a></div>
+      Also I’m not sure if is desirable/okay for all errors to be fatal/cause the geofence to
+      be unmonitored.<a href="#issue-07ab8dec"> ↵ </a></div>
   </div>
  </body>
 </html>
