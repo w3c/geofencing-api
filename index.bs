@@ -374,7 +374,7 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
     <a>in parallel</a>:
     <ol>
       <li>
-        Let <var>geofences</var> be a new sequence.
+        Let <var>geofences</var> be a new {{sequence}}.
       </li>
       <li>
         For each <a>geofence</a> in the <a>active geofences</a> associated with this
