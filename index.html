@@ -1035,33 +1035,26 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
   DOMString? <dfn class="idl-code" data-dfn-for="GeofenceQueryOptions" data-dfn-type="dict-member" data-export="" data-type="DOMString? " id="dom-geofencequeryoptions-name">name<a class="self-link" href="#dom-geofencequeryoptions-name"></a></dfn>;
 };
 </pre>
-     <p>The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" data-lt="add(initialRegion, options)|add(initialRegion)" id="dom-geofencemanager-add" title="add(initialRegion, options)"> add(<var>initialRegion</var>, <var>options</var>)<a class="self-link" href="#dom-geofencemanager-add"></a></dfn></code> method when invoked MUST run
-    the following steps:</p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" data-lt="add(initialRegion, options)|add(initialRegion)" id="dom-geofencemanager-add" title="add(initialRegion, options)"> add(<var>initialRegion</var>, <var>options</var>)<a class="self-link" href="#dom-geofencemanager-add"></a></dfn></code> method when invoked MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
      <ol>
-      <li> Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
-      <li>
-        Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
-       <ol>
-        <li> If the total number of <a data-link-type="dfn" href="#active-geofences">active geofences</a> for all <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registrations</a> in the current origin
-            is more than a <a data-link-type="dfn" href="#user-agent">user agent</a> defined limit, reject <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#quotaexceedederror">QuotaExceededError</a></code> and terminate these substeps. A <a data-link-type="dfn" href="#user-agent">user agent</a> SHOULD allow at
-            least 20 <a data-link-type="dfn" href="#active-geofences">active geofences</a> for an origin. 
-        <li> Ask the user whether they allow the <a data-link-type="dfn" href="#webapp">webapp</a> to use geofences, unless a
-            prearranged trust relationship applies or the user has already granted or denied
-            permission explicitly for this <a data-link-type="dfn" href="#webapp">webapp</a>. 
-        <li> If not granted, reject <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#exceptdef-permissiondeniederror">PermissionDeniedError</a></code> and terminate these substeps. 
-        <li> Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term">geofence</a>. 
-        <li> Set the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of the <var>geofence</var> to a newly generated value. 
-        <li> Set the <a data-link-type="dfn" href="#geographic-region">geographic region</a> of the <var>geofence</var> to a <code class="idl"><a data-link-type="idl" href="#geofenceregion">GeofenceRegion</a></code> instance of the same type and with the same
-            attributes as the <var>initialRegion</var> passed to <code>add</code>. 
-        <li> Set the <a data-link-type="dfn" href="#include-position">include position</a> flag of the <var>geofence</var> to <var>options.includePosition</var>, or <code>false</code> if no options were
-            specified. 
-        <li> Add <var>geofence</var> to the <a data-link-type="dfn" href="#active-geofences">active geofences</a> of the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker
-            registration</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a>. 
-        <li> If the current geographic position is inside the newly added region, <a data-link-type="dfn" href="#fire-a-geofence-event">fire a geofenceenter event</a>. 
-        <li> Resolve <var>promise</var> with a new <code><a data-link-type="dfn" href="#geofence-term">Geofence</a></code> instance
-            representing the <var>geofence</var>. 
-       </ol>
-      <li> Return <var>promise</var>. 
+      <li> If the total number of <a data-link-type="dfn" href="#active-geofences">active geofences</a> for all <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registrations</a> in the current origin
+        is more than a <a data-link-type="dfn" href="#user-agent">user agent</a> defined limit, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#reject-promise">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#quotaexceedederror">QuotaExceededError</a></code> and terminate these substeps. A <a data-link-type="dfn" href="#user-agent">user agent</a> SHOULD allow at
+        least 20 <a data-link-type="dfn" href="#active-geofences">active geofences</a> for an origin. 
+      <li> Ask the user whether they allow the <a data-link-type="dfn" href="#webapp">webapp</a> to use geofences, unless a
+        prearranged trust relationship applies or the user has already granted or denied
+        permission explicitly for this <a data-link-type="dfn" href="#webapp">webapp</a>. 
+      <li> If not granted, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#reject-promise">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="#exceptdef-permissiondeniederror">PermissionDeniedError</a></code> and terminate these substeps. 
+      <li> Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term">geofence</a>. 
+      <li> Set the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of the <var>geofence</var> to a newly generated value. 
+      <li> Set the <a data-link-type="dfn" href="#geographic-region">geographic region</a> of the <var>geofence</var> to a <code class="idl"><a data-link-type="idl" href="#geofenceregion">GeofenceRegion</a></code> instance of the same type and with the same
+        attributes as the <var>initialRegion</var> passed to <code>add</code>. 
+      <li> Set the <a data-link-type="dfn" href="#include-position">include position</a> flag of the <var>geofence</var> to <var>options.includePosition</var>, or <code>false</code> if no options were
+        specified. 
+      <li> Add <var>geofence</var> to the <a data-link-type="dfn" href="#active-geofences">active geofences</a> of the <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker
+        registration</a> associated with the <a data-link-type="dfn" href="#webapp">webapp</a>. 
+      <li> If the current geographic position is inside the newly added region, <a data-link-type="dfn" href="#fire-a-geofence-event">fire a geofenceenter event</a>. 
+      <li> <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#resolve-promise">Resolve</a> <var>promise</var> with a new <code><a data-link-type="dfn" href="#geofence-term">Geofence</a></code> instance
+        representing the <var>geofence</var>. 
      </ol>
      <p class="issue" id="issue-8ae02316"><a class="self-link" href="#issue-8ae02316"></a> Somehow mention that the region that is saved as part of the registration can be slightly
     different from the region passed to register. An implementation may adjust parameters to
@@ -1070,48 +1063,36 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
     always treats registrations as a success, but won’t actually track geofences/trigger
     events unless the user has granted permission.</p>
      <p>If the <code><dfn class="idl-code" data-dfn-for="GeofenceOptions" data-dfn-type="dict-member" data-export="" id="dom-geofenceoptions-includeposition" title="includePosition">includePosition<a class="self-link" href="#dom-geofenceoptions-includeposition"></a></dfn></code> attribute is set to true, <code class="idl"><a data-link-type="idl" href="#geofenceevent">GeofenceEvent</a></code>s for this registration will have a <code class="idl"><a data-link-type="idl" href="#dom-geofenceevent-position">position</a></code> attribute. When set to false, the <code class="idl"><a data-link-type="idl" href="#dom-geofenceevent-position">position</a></code> attribute will always be undefined.</p>
-     <p>The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" data-lt="getAll(options)|getAll()" id="dom-geofencemanager-getall" titlt="getAll(options)">getAll(<var>options</var>)<a class="self-link" href="#dom-geofencemanager-getall"></a></dfn></code> method when invoked MUST run the following steps:</p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" data-lt="getAll(options)|getAll()" id="dom-geofencemanager-getall" titlt="getAll(options)">getAll(<var>options</var>)<a class="self-link" href="#dom-geofencemanager-getall"></a></dfn></code> method when invoked MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
      <ol>
-      <li> Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
+      <li> Let <var>geofences</var> be a new sequence. 
       <li>
-        Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
+        For each <a data-link-type="dfn" href="#geofence-term">geofence</a> in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with this <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, run the following substeps: 
        <ol>
-        <li> Let <var>geofences</var> be a new sequence. 
-        <li>
-          For each <a data-link-type="dfn" href="#geofence-term">geofence</a> in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with this <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, run the following substeps: 
-         <ol>
-          <li> If <var>options</var> is passed, has a non-null <var>name</var> attribute,
-                and that <var>name</var> is not equal to the name of the <var>geofence</var>,
-                skip the rest of these substeps and continue with the next registration. 
-          <li> Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term"><code>Geofence</code></a> instance
-                representing the <var>geofence</var>. 
-          <li> Append <var>geofence</var> to <var>geofences</var>. 
-         </ol>
-        <li> Resolve <var>promise</var> with <var>geofences</var>. 
+        <li> If <var>options</var> is passed, has a non-null <var>name</var> attribute,
+            and that <var>name</var> is not equal to the name of the <var>geofence</var>,
+            skip the rest of these substeps and continue with the next registration. 
+        <li> Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term"><code>Geofence</code></a> instance
+            representing the <var>geofence</var>. 
+        <li> Append <var>geofence</var> to <var>geofences</var>. 
        </ol>
-      <li> Return <var>promise</var>. 
+      <li> <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#resolve-promise">Resolve</a> <var>promise</var> with <var>geofences</var>. 
      </ol>
-     <p>The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" id="dom-geofencemanager-getbyid" title="getById(id)">getById(<var>id</var>)<a class="self-link" href="#dom-geofencemanager-getbyid"></a></dfn></code> method
-    when invoked MUST run the following steps:</p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="GeofenceManager" data-dfn-type="method" data-export="" id="dom-geofencemanager-getbyid" title="getById(id)">getById(<var>id</var>)<a class="self-link" href="#dom-geofencemanager-getbyid"></a></dfn></code> method when invoked MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a> <var>promise</var> and run the following
+    steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
      <ol>
-      <li> Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
       <li>
-        Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
+        For each <a data-link-type="dfn" href="#geofence-term">geofence</a> in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with this <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, run the following substeps: 
        <ol>
-        <li>
-          For each <a data-link-type="dfn" href="#geofence-term">geofence</a> in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with this <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, run the following substeps: 
-         <ol>
-          <li> If the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of the current <var>geofence</var> is not equal to
-                the passed in <var>id</var>, skip the rest of these substeps and continue with
-                the next geofence. 
-          <li> Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term"><code>Geofence</code></a> instance with
-                attributes equal to those of the <var>geofence</var>. 
-          <li> Resolve <var>promise</var> with <var>geofence</var> and abort the remainder
-                of these substeps. 
-         </ol>
-        <li> If <var>promise</var> was not resolved, resolve <var>promise</var> with <code>null</code>. 
+        <li> If the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of the current <var>geofence</var> is not equal to
+            the passed in <var>id</var>, skip the rest of these substeps and continue with
+            the next geofence. 
+        <li> Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term"><code>Geofence</code></a> instance with
+            attributes equal to those of the <var>geofence</var>. 
+        <li> <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#resolve-promise">Resolve</a> <var>promise</var> with <var>geofence</var> and abort the remainder
+            of these substeps. 
        </ol>
-      <li> Return <var>promise</var>. 
+      <li> If <var>promise</var> was not resolved, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#resolve-promise">resolve</a> <var>promise</var> with <code>null</code>. 
      </ol>
     </section>
     <section>
@@ -1127,20 +1108,14 @@ interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geo
      <p>When getting the <code><dfn class="idl-code" data-dfn-for="Geofence" data-dfn-type="attribute" data-export="" id="dom-geofence-id" title="id">id<a class="self-link" href="#dom-geofence-id"></a></dfn></code> attribute, the <a data-link-type="dfn" href="#user-agent">user
     agent</a> MUST return the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of the <a data-link-type="dfn" href="#geofence-term">geofence</a>.</p>
      <p>When getting the <code><dfn class="idl-code" data-dfn-for="Geofence" data-dfn-type="attribute" data-export="" id="dom-geofence-region" title="region">region<a class="self-link" href="#dom-geofence-region"></a></dfn></code> attribute, the <a data-link-type="dfn" href="#user-agent">user agent</a> MUST return the <a data-link-type="dfn" href="#geographic-region">geographic region</a> of this <a data-link-type="dfn" href="#geofence-term">geofence</a>.</p>
-     <p>The <code><dfn class="idl-code" data-dfn-for="Geofence" data-dfn-type="method" data-export="" id="dom-geofence-remove" title="remove()">remove()<a class="self-link" href="#dom-geofence-remove"></a></dfn></code> method when
-    invoked MUST run the following steps:</p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="Geofence" data-dfn-type="method" data-export="" id="dom-geofence-remove" title="remove()">remove()<a class="self-link" href="#dom-geofence-remove"></a></dfn></code> method when invoked
+    MUST return <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a> <var>promise</var> and run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:</p>
      <ol>
-      <li> Let <var>promise</var> be <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>. 
-      <li>
-        Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>: 
-       <ol>
-        <li> If this <a data-link-type="dfn" href="#geofence-term">geofence</a> is not currently in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with a <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, resolve <var>promise</var> with <code>false</code> and abort the remainder of these steps. 
-        <li> Remove this <a data-link-type="dfn" href="#geofence-term">geofence</a> from the set of <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated
-            with the current <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>. No more events related to this
-            geofence will be fired after this. 
-        <li> Resolve <var>promise</var> with <code>true</code>. 
-       </ol>
-      <li> Return <var>promise</var>. 
+      <li> If this <a data-link-type="dfn" href="#geofence-term">geofence</a> is not currently in the <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated with a <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#resolve-promise">resolve</a> <var>promise</var> with <code>false</code> and abort the remainder of these steps. 
+      <li> Remove this <a data-link-type="dfn" href="#geofence-term">geofence</a> from the set of <a data-link-type="dfn" href="#active-geofences">active geofences</a> associated
+        with the current <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>. No more events related to this
+        geofence will be fired after this. 
+      <li> <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#resolve-promise">Resolve</a> <var>promise</var> with <code>true</code>. 
      </ol>
     </section>
     <section>
@@ -1422,6 +1397,8 @@ interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geo
     <a data-link-type="biblio" href="#biblio-promises-guide">[promises-guide]</a> defines the following terms:
     <ul>
      <li><a href="https://www.w3.org/2001/tag/doc/promises-guide#a-new-promise">a new promise</a>
+     <li><a href="https://www.w3.org/2001/tag/doc/promises-guide#reject-promise">reject</a>
+     <li><a href="https://www.w3.org/2001/tag/doc/promises-guide#resolve-promise">resolve</a>
     </ul>
    <li>
     <a data-link-type="biblio" href="#biblio-service-workers">[service-workers]</a> defines the following terms:
