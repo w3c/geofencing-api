@@ -40,6 +40,10 @@ spec: geolocation-api; urlPrefix: http://www.w3.org/TR/geolocation-API/
     type: interface
         text: Position; url: position_interface
 
+spec: html; urlPrefix: https://html.spec.whatwg.org/
+    type: dfn
+        text: trusted; url: concept-events-trusted
+
 spec: promises-guide; urlPrefix: https://www.w3.org/2001/tag/doc/promises-guide#
     type: dfn
         text: A new promise; url: a-new-promise
@@ -48,6 +52,7 @@ spec: promises-guide; urlPrefix: https://www.w3.org/2001/tag/doc/promises-guide#
 
 spec: service-workers; urlPrefix: https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html
     type: dfn
+        text: handle functional event; url: handle-functional-event-algorithm
         text: service worker; url: service-worker-concept
         text: service worker registration; url: service-worker-registration-concept
     type: interface
@@ -581,33 +586,42 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
         };
       </pre>
 
-      Upon detecting a <a title="breached">breach</a> of a <a>geofence</a>, the <a>user
-      agent</a> MUST run the following steps to <dfn>fire a geofence event</dfn>:
+      Upon detecting a <a title="breached">breach</a> of a <a>geofence</a> <var>geofence</var>,
+      the <a>user agent</a> MUST run the following steps to <dfn>fire a geofence event</dfn>:
       <ol>
         <li>
-          If the <a>Service Worker</a> associated with the <a>webapp</a> is not running, start it.
+          Let <var>serviceWorkerRegistration</var> be the <a>service worker registration</a>
+          <var>geofence</var> is associated with.
         </li>
         <li>
-          Let <var>scope</var> be the {{ServiceWorkerGlobalScope}} of the
-          <a>Service Worker</a> associated with the <a>webapp</a>.
-        </li>
-        <li>
-          Let <var>event</var> be a new {{GeofenceEvent}}, whose
-          <code>geofence</code> attribute is a new {{Geofence}} instance
-          representing the <a>geofence</a> that was <a>breached</a>.
-        </li>
-        <li>
-          If the geofences <a>include position</a> flag is true, set
-          <var>event.position</var> to the current geographical position.
-        </li>
-        <li>
-          Let <var>eventName</var> be <code>geofenceenter</code> or
-          <code>geofenceleave</code>, corresponding to the type of <a title="breached">breach</a>
-          event being processed.
-        </li>
-        <li>
-          <a>Queue a task</a> to <a data-lt="fire a simple event">fire <var>event</var> as a
-          simple event</a> named <var>eventName</var> at <var>scope</var>.
+          Invoke the <a>Handle Functional Event</a> algorithm with <var>serviceWorkerRegistration</var>
+          and the algorithm represented by the following substeps as arguments.
+          <ol>
+            <li>
+              Let <var>globalObject</var> be the <a>global object</a> these steps are invoked with.
+            </li>
+            <li>
+              Let <var>eventType</var> be <code>geofenceenter</code> or
+              <code>geofenceleave</code>, corresponding to the type of <a title="breached">breach</a>
+              event being processed.
+            </li>
+            <li>
+              Create a <a>trusted</a> event <var>event</var> that uses the {{GeofenceEvent}}
+              interface, with event type equal to <var>eventType</var>.
+            </li>
+            <li>
+              Let the {{GeofenceEvent/geofence}} atrribute of <var>event</var> be initialized to
+              a new {{Geofence}} instance representing <var>geofence</var>.
+            </li>
+            <li>
+              If the <a>include position</a> flag of <var>geofence</var> is true, set the
+              {{GeofenceEvent/position}} attribute of <var>event</var> to the current geographical
+              position.
+            </li>
+            <li>
+              Dispatch <var>event</var> at <var>globalObject</var>.
+            </li>
+          </ol>
         </li>
       </ol>
 
@@ -624,7 +638,7 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
         [Exposed=ServiceWorker]
         interface GeofenceErrorEvent : ExtendableEvent {
           readonly attribute Geofence geofence;
-          readonly attribute unsigned short code;
+          readonly attribute DOMString error;
           readonly attribute DOMString message;
         };
       </pre>
@@ -634,34 +648,44 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
       be unmonitored.
 
       Upon detecting some situation in which the <a>user agent</a> won't be able to detect
-      future <a title="breached">breached</a> of a <a>geofence</a>, the <a>user agent</a>
-      MUST run the following steps:
+      future <a title="breached">breached</a> of a <a>geofence</a> <var>geofence</var>, the
+      <a>user agent</a> MUST run the following steps:
       <ol>
         <li>
-          If the <a>Service Worker</a> associated with the <a>webapp</a> is not running, start it.
+          Let <var>serviceWorkerRegistration</var> be the <a>service worker registration</a>
+          <var>geofence</var> is associated with.
         </li>
         <li>
-          Let <var>scope</var> be the {{ServiceWorkerGlobalScope}} of the <a>Service Worker</a>
-          associated with the <a>webapp</a>.
+          Remove <var>geofence</var> from the set of <a>active geofence</a> associated with
+          <var>serviceWorkerRegistration</var>.
         </li>
         <li>
-          Let <var>event</var> be a new {{GeofenceErrorEvent}}, whose {{GeofenceErrorEvent/geofence}}
-          attribute is a new {{Geofence}} instance representing the <a>geofence</a> for which an
-          error was detected.
-        </li>
-        <li>
-          Let <var>event.code</var> be an error code.
-        </li>
-        <li>
-          Let <var>event.message</var> be a descriptive message for the error that occurred.
-        </li>
-        <li>
-          Remove the <a>geofence</a> for which an error was detected from the set of
-          <a>active geofences</a> associated with the current <a>service worker registration</a>.
-        </li>
-        <li>
-          <a>Queue a task</a> to <a data-lt="fire a simple event">fire <var>event</var> as a
-          simple event</a> named <code>geofenceerror</code> at <var>scope</var>.
+          Invoke the <a>Handle Functional Event</a> algorithm with <var>serviceWorkerRegistration</var>
+          and the algorithm represented by the following substeps as arguments.
+          <ol>
+            <li>
+              Let <var>globalObject</var> be the <a>global object</a> these steps are invoked with.
+            </li>
+            <li>
+              Create a <a>trusted</a> event <var>event</var> that uses the {{GeofenceErrorEvent}}
+              interface, with event type <code>geofenceerror</code>.
+            </li>
+            <li>
+              Let the {{GeofenceErrorEvent/geofence}} atrribute of <var>event</var> be initialized to
+              a new {{Geofence}} instance representing <var>geofence</var>.
+            </li>
+            <li>
+              Let the {{GeofenceErrorEvent/error}} attribute of <var>event</var> be initialized to
+              an error name.
+            </li>
+            <li>
+              Let the {{GeofenceErrorEvent/message}} attribute of <var>event</var> be initialized to
+              a descriptive message for the error that occurred.
+            </li>
+            <li>
+              Dispatch <var>event</var> at <var>globalObject</var>.
+            </li>
+          </ol>
         </li>
       </ol>
     </section>
