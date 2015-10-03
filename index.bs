@@ -35,6 +35,7 @@ Markup Shorthands: css off
 spec: ecma-262; urlPrefix: http://www.ecma-international.org/ecma-262/6.0/
     type: interface
         text: RangeError; url: sec-native-error-types-used-in-this-standard-rangeerror
+        text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
 
 spec: geolocation-api; urlPrefix: http://www.w3.org/TR/geolocation-API/
     type: interface
@@ -367,6 +368,24 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
         Let <var>serviceWorkerRegistration</var> be the {{GeofenceManager}}'s associated <a>service worker registration</a>.
       </li>
       <li>
+        If <var>initialRegion</var> is not a {{CircularGeofenceRegion}} instance, <a>reject</a> <var>promise</var> with a {{TypeError}}.
+      </li>
+      <li>
+        If the length of the {{GeofenceRegion/name}} property of <var>initialRegion</var> exceeds a
+        <a>user agent</a> defined <a data-lt="name limit">limit</a>, <a>reject</a> <var>promise</var>
+        with a {{RangeError}}.
+      </li>
+      <li>
+        If the {{CircularGeofenceRegion/latitude}} property of <var>initialRegion</var> is less than
+        <code>-90</code> or greater than <code>90</code>, <a>reject</a> <var>promise</var> with a
+        {{RangeError}}.
+      </li>
+      <li>
+        If the {{CircularGeofenceRegion/longitude}} property of <var>initialRegion</var> is less
+        than <code>-180</code> or greater than <code>180</code>, <a>reject</a> <var>promise</var>
+        with a {{RangeError}}.
+      </li>
+      <li>
         If the total number of <a data-lt="list of geofences">geofences</a> for all <a data-lt=
         "service worker registration">service worker registrations</a> in the current origin
         is more than the <a>user agent</a> defined <a data-lt="geofence limit">limit</a>, <a>reject</a>
@@ -568,9 +587,6 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
     the value it was initialized to. When the object is created, this attribute MUST be set to the
     value of the {{GeofenceRegionInit/name}} property in the {{GeofenceRegionInit}} dictionary, or
     an empty string if that property wasn't set.
-
-    If the <a>user agent</a> defined <a data-lt="name limit">limit</a> on the maximum size of the
-    {{GeofenceRegion/name}} attribute is exceeded the constructor MUST throw a {{RangeError}}.
   </section>
 
   <section>
@@ -591,22 +607,8 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
       };
     </pre>
 
-    The {{CircularGeofenceRegion}} constructor when invoked MUST run the following steps:
-    <ol>
-      <li>
-        If <var>init.latitude</var> is less than <code>-90</code> or greater than
-        <code>90</code>, throw a {{RangeError}}.
-      </li>
-      <li>
-        If <var>init.longitude</var> is less than <code>-180</code> or greater than
-        <code>180</code>, throw a {{RangeError}}.
-      </li>
-      <li>
-        Set the <var>latitude</var>, <var>longitude</var> and <var>radius</var> attributes of
-        the newly created {{CircularGeofenceRegion}} instance to the same values as
-        those in the initializer.
-      </li>
-    </ol>
+    The {{CircularGeofenceRegion}} constructor when invoked MUST initialize the properties of the
+    newly created object to the corresponding attributes in the initializer.
 
     The <code><dfn attribute for=CircularGeofenceRegion title=latitude>latitude</dfn></code> attribute
     MUST return the value it was intialized to. This value represents the latitude in
@@ -615,10 +617,6 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
     The <code><dfn attribute for=CircularGeofenceRegion title=longitude>longitude</dfn></code>
     attribute MUST return the value it was intialized to. This value represents the longitude
     in circular degrees of the center of the circular region.
-
-    ISSUE: The downside of doing error checks in the CircularGeofenceRegion constructor is that they
-    will be actual exceptions instead of promise rejections when calling add. Would it make
-    sense to move the validity checks to add?
   </section>
 
   <section>
