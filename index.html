@@ -990,12 +990,70 @@
 
 </style>
   <meta content="Bikeshed 1.0.0" name="generator">
+<style>.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #ffffff; }
+.highlight .c { color: #708090 } /* Comment */
+.highlight .k { color: #990055 } /* Keyword */
+.highlight .l { color: #669900 } /* Literal */
+.highlight .n { color: #0077aa } /* Name */
+.highlight .o { color: #999999 } /* Operator */
+.highlight .p { color: #999999 } /* Punctuation */
+.highlight .cm { color: #708090 } /* Comment.Multiline */
+.highlight .cp { color: #708090 } /* Comment.Preproc */
+.highlight .c1 { color: #708090 } /* Comment.Single */
+.highlight .cs { color: #708090 } /* Comment.Special */
+.highlight .kc { color: #990055 } /* Keyword.Constant */
+.highlight .kd { color: #990055 } /* Keyword.Declaration */
+.highlight .kn { color: #990055 } /* Keyword.Namespace */
+.highlight .kp { color: #990055 } /* Keyword.Pseudo */
+.highlight .kr { color: #990055 } /* Keyword.Reserved */
+.highlight .kt { color: #990055 } /* Keyword.Type */
+.highlight .ld { color: #669900 } /* Literal.Date */
+.highlight .m { color: #990055 } /* Literal.Number */
+.highlight .s { color: #669900 } /* Literal.String */
+.highlight .na { color: #0077aa } /* Name.Attribute */
+.highlight .nc { color: #0077aa } /* Name.Class */
+.highlight .no { color: #0077aa } /* Name.Constant */
+.highlight .nd { color: #0077aa } /* Name.Decorator */
+.highlight .ni { color: #0077aa } /* Name.Entity */
+.highlight .ne { color: #0077aa } /* Name.Exception */
+.highlight .nf { color: #0077aa } /* Name.Function */
+.highlight .nl { color: #0077aa } /* Name.Label */
+.highlight .nn { color: #0077aa } /* Name.Namespace */
+.highlight .py { color: #0077aa } /* Name.Property */
+.highlight .nt { color: #0077aa } /* Name.Tag */
+.highlight .nv { color: #0077aa } /* Name.Variable */
+.highlight .ow { color: #999999 } /* Operator.Word */
+.highlight .mb { color: #990055 } /* Literal.Number.Bin */
+.highlight .mf { color: #990055 } /* Literal.Number.Float */
+.highlight .mh { color: #990055 } /* Literal.Number.Hex */
+.highlight .mi { color: #990055 } /* Literal.Number.Integer */
+.highlight .mo { color: #990055 } /* Literal.Number.Oct */
+.highlight .sb { color: #669900 } /* Literal.String.Backtick */
+.highlight .sc { color: #669900 } /* Literal.String.Char */
+.highlight .sd { color: #669900 } /* Literal.String.Doc */
+.highlight .s2 { color: #669900 } /* Literal.String.Double */
+.highlight .se { color: #669900 } /* Literal.String.Escape */
+.highlight .sh { color: #669900 } /* Literal.String.Heredoc */
+.highlight .si { color: #669900 } /* Literal.String.Interpol */
+.highlight .sx { color: #669900 } /* Literal.String.Other */
+.highlight .sr { color: #669900 } /* Literal.String.Regex */
+.highlight .s1 { color: #669900 } /* Literal.String.Single */
+.highlight .ss { color: #669900 } /* Literal.String.Symbol */
+.highlight .vc { color: #0077aa } /* Name.Variable.Class */
+.highlight .vg { color: #0077aa } /* Name.Variable.Global */
+.highlight .vi { color: #0077aa } /* Name.Variable.Instance */
+.highlight .il { color: #990055 } /* Literal.Number.Integer.Long */
+        .highlight { background: hsl(24, 20%, 95%); }
+        code.highlight { padding: .1em; border-radius: .3em; }
+        pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
+        </style>
  </head>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="http://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/Icons/w3c_home" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Geofencing API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-10-05">5 October 2015</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2015-10-07">7 October 2015</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1043,14 +1101,7 @@
     <li>
      <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
      <ul class="toc">
-      <li>
-       <a href="#examples"><span class="secno">1.1</span> <span class="content">Examples</span></a>
-       <ul class="toc">
-        <li><a href="#example-monitor-a-region"><span class="secno">1.1.1</span> <span class="content">Monitor a region</span></a>
-        <li><a href="#example-respond-to-enter"><span class="secno">1.1.2</span> <span class="content">Respond to a region being entered</span></a>
-        <li><a href="#example-respond-to-error"><span class="secno">1.1.3</span> <span class="content">Respond to an error condition</span></a>
-        <li><a href="#example-unmonitor"><span class="secno">1.1.4</span> <span class="content">Unmonitor a region in response to some other event</span></a>
-       </ul>
+      <li><a href="#examples"><span class="secno">1.1</span> <span class="content">Examples</span></a>
      </ul>
     <li>
      <a href="#model"><span class="secno">2</span> <span class="content">Model</span></a>
@@ -1123,93 +1174,89 @@ closed the <a data-link-type="dfn" href="#webapp">webapp</a>.</p>
      <h3 class="heading settled" data-level="1.1" id="examples"><span class="secno">1.1. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h3>
      <p>The following code extracts illustrate how to use this API to be notified of geographic
     regions being entered or left.</p>
-     <section>
-      <h4 class="heading settled" data-level="1.1.1" id="example-monitor-a-region"><span class="secno">1.1.1. </span><span class="content">Monitor a region</span><a class="self-link" href="#example-monitor-a-region"></a></h4>
-<pre class="example highlight" id="example-89fd9b0d"><a class="self-link" href="#example-89fd9b0d"></a>// https://example.com/webapp.js
-navigator.serviceWorker
-  .register('serviceworker.js')
-  .then((swRegistration) => {
-    let region = new CircularGeofenceRegion({
-      name: 'myfence',
-      latitude: 37.421999,
-      longitude: -122.084015,
-      radius: 1000
-    });
-    let options = {
-      includePosition: true
-    };
-    swRegistration.geofencing.add(region, options)
-      .then(
-        // If more than just a name needs to be stored with a geofence, now
-        // would be the time to store this in some storage.
-        (geofence) => console.log(geofence.id),
-        (error) => console.log(error)
-      );
-});
-</pre>
-     </section>
-     <section>
-      <h4 class="heading settled" data-level="1.1.2" id="example-respond-to-enter"><span class="secno">1.1.2. </span><span class="content">Respond to a region being entered</span><a class="self-link" href="#example-respond-to-enter"></a></h4>
-<pre class="example highlight" id="example-21ad8310"><a class="self-link" href="#example-21ad8310"></a>// https://example.com/serviceworker.js
-self.ongeofenceenter = (event) => {
-  console.log(event.geofence.id);
-  console.log(event.geofence.region.name);
+     <div class="example" id="example-c82508e5">
+      <a class="self-link" href="#example-c82508e5"></a> Monitor a region: 
+<pre class="highlight"><span class="c1">// https://example.com/webapp.js</span>
+<span class="nx">navigator</span><span class="p">.</span><span class="nx">serviceWorker</span>
+  <span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">'serviceworker.js'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">swRegistration</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">region</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CircularGeofenceRegion</span><span class="p">({</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="s1">'myfence'</span><span class="p">,</span>
+      <span class="nx">latitude</span><span class="o">:</span> <span class="mf">37.421999</span><span class="p">,</span>
+      <span class="nx">longitude</span><span class="o">:</span> <span class="o">-</span><span class="mf">122.084015</span><span class="p">,</span>
+      <span class="nx">radius</span><span class="o">:</span> <span class="mi">1000</span>
+    <span class="p">});</span>
+    <span class="kd">let</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">includePosition</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">};</span>
+    <span class="nx">swRegistration</span><span class="p">.</span><span class="nx">geofencing</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">region</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+        <span class="c1">// If more than just a name needs to be stored with a geofence, now</span>
+        <span class="c1">// would be the time to store this in some storage.</span>
+        <span class="p">(</span><span class="nx">geofence</span><span class="p">)</span> <span class="o">=></span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">geofence</span><span class="p">.</span><span class="nx">id</span><span class="p">),</span>
+        <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="o">=></span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+      <span class="p">);</span>
+<span class="p">});</span></pre>
+     </div>
+     <div class="example" id="example-745d4965">
+      <a class="self-link" href="#example-745d4965"></a> Respond to a region being entered: 
+<pre class="highlight"><span class="c1">// https://example.com/serviceworker.js</span>
+<span class="nx">self</span><span class="p">.</span><span class="nx">ongeofenceenter</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">geofence</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">geofence</span><span class="p">.</span><span class="nx">region</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 
-  // If this is not a geofence of interest anymore, remove it.
-  if (event.geofence.region.name !== "myfence") {
-    event.waitUntil(event.geofence.remove());
-  }
-};
-</pre>
-     </section>
-     <section>
-      <h4 class="heading settled" data-level="1.1.3" id="example-respond-to-error"><span class="secno">1.1.3. </span><span class="content">Respond to an error condition</span><a class="self-link" href="#example-respond-to-error"></a></h4>
-<pre class="example highlight" id="example-24ab4d23"><a class="self-link" href="#example-24ab4d23"></a>// https://example.com/serviceworker.js
-self.ongeofenceerror = (event) => {
-  console.log(event.geofence.id);
-  console.log(event.geofence.region.name);
-  console.log(event.error);
+  <span class="c1">// If this is not a geofence of interest anymore, remove it.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">geofence</span><span class="p">.</span><span class="nx">region</span><span class="p">.</span><span class="nx">name</span> <span class="o">!==</span> <span class="s2">"myfence"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">waitUntil</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">geofence</span><span class="p">.</span><span class="nx">remove</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">};</span></pre>
+     </div>
+     <div class="example" id="example-078f4f93">
+      <a class="self-link" href="#example-078f4f93"></a> Respond to an error condition: 
+<pre class="highlight"><span class="c1">// https://example.com/serviceworker.js</span>
+<span class="nx">self</span><span class="p">.</span><span class="nx">ongeofenceerror</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">geofence</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">geofence</span><span class="p">.</span><span class="nx">region</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">error</span><span class="p">);</span>
 
-  // Some error condition occurred. The region is no longer monitored, and won’t
-  // trigger any more events.
+  <span class="c1">// Some error condition occurred. The region is no longer monitored, and won’t</span>
+  <span class="c1">// trigger any more events.</span>
 
-  // Try to re-monitor, although depending on the error this might fail.
-  event
-    .waitUntil(self.registration.geofencing.add(event.geofence.region))
-    .then((geofence) => {
-      // re-monitoring succeeded, new geofence will have a different ID.
-    }, (error) => {
-      // re-monitoring failed.
-    });
-};
-</pre>
-     </section>
-     <section>
-      <h4 class="heading settled" data-level="1.1.4" id="example-unmonitor"><span class="secno">1.1.4. </span><span class="content">Unmonitor a region in response to some other event</span><a class="self-link" href="#example-unmonitor"></a></h4>
-<pre class="example highlight" id="example-48aef5ac"><a class="self-link" href="#example-48aef5ac"></a>// https://example.com/serviceworker.js
+  <span class="c1">// Try to re-monitor, although depending on the error this might fail.</span>
+  <span class="nx">event</span>
+    <span class="p">.</span><span class="nx">waitUntil</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">registration</span><span class="p">.</span><span class="nx">geofencing</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">geofence</span><span class="p">.</span><span class="nx">region</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geofence</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
+      <span class="c1">// re-monitoring succeeded, new geofence will have a different ID.</span>
+    <span class="p">},</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
+      <span class="c1">// re-monitoring failed.</span>
+    <span class="p">});</span>
+<span class="p">};</span></pre>
+     </div>
+     <div class="example" id="example-f8702162">
+      <a class="self-link" href="#example-f8702162"></a> Unmonitor a region in response to some other event: 
+<pre class="highlight"><span class="c1">// https://example.com/serviceworker.js</span>
 
-// Either look geofence up by name:
-self.onsomeevent = (event) => {
-  event
-    .waitUntil(
-      self.registration.geofencing.getAll({
-        name: 'myfence'
-      })
-    )
-    .then(
-      geofences => geofences.forEach(fence => fence.remove())
-    );
-};
+<span class="c1">// Either look geofence up by name:</span>
+<span class="nx">self</span><span class="p">.</span><span class="nx">onsomeevent</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
+  <span class="nx">event</span>
+    <span class="p">.</span><span class="nx">waitUntil</span><span class="p">(</span>
+      <span class="nx">self</span><span class="p">.</span><span class="nx">registration</span><span class="p">.</span><span class="nx">geofencing</span><span class="p">.</span><span class="nx">getAll</span><span class="p">({</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">'myfence'</span>
+      <span class="p">})</span>
+    <span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+      <span class="nx">geofences</span> <span class="o">=></span> <span class="nx">geofences</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">fence</span> <span class="o">=></span> <span class="nx">fence</span><span class="p">.</span><span class="nx">remove</span><span class="p">())</span>
+    <span class="p">);</span>
+<span class="p">};</span>
 
-// Or look geofence up by ID:
-self.onsomeotherevent = (event) => {
-  let geofence_id = ''; /* somehow get the ID of a geofence */
-  event
-    .waitUntil(self.registration.geofencing.getById(geofence_id))
-    .then(geofence => geofence.remove());
-};
-</pre>
-     </section>
+<span class="c1">// Or look geofence up by ID:</span>
+<span class="nx">self</span><span class="p">.</span><span class="nx">onsomeotherevent</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=></span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">geofence_id</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span> <span class="cm">/* somehow get the ID of a geofence */</span>
+  <span class="nx">event</span>
+    <span class="p">.</span><span class="nx">waitUntil</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">registration</span><span class="p">.</span><span class="nx">geofencing</span><span class="p">.</span><span class="nx">getById</span><span class="p">(</span><span class="nx">geofence_id</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">geofence</span> <span class="o">=></span> <span class="nx">geofence</span><span class="p">.</span><span class="nx">remove</span><span class="p">());</span>
+<span class="p">};</span></pre>
+     </div>
     </section>
    </section>
    <section>

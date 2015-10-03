@@ -99,10 +99,10 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
     The following code extracts illustrate how to use this API to be notified of geographic
     regions being entered or left.
 
-    <section>
-      <h4 id="example-monitor-a-region">Monitor a region</h4>
+    <div class=example>
+      Monitor a region:
 
-      <pre class="example highlight">
+      <pre highlight=js>
         // https://example.com/webapp.js
         navigator.serviceWorker
           .register('serviceworker.js')
@@ -125,12 +125,12 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
               );
         });
       </pre>
-    </section>
+    </div>
 
-    <section>
-      <h4 id="example-respond-to-enter">Respond to a region being entered</h4>
+    <div class=example>
+      Respond to a region being entered:
 
-      <pre class="example highlight">
+      <pre highlight=js>
         // https://example.com/serviceworker.js
         self.ongeofenceenter = (event) =&gt; {
           console.log(event.geofence.id);
@@ -142,12 +142,12 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
           }
         };
       </pre>
-    </section>
+    </div>
 
-    <section>
-      <h4 id="example-respond-to-error">Respond to an error condition</h4>
+    <div class=example>
+      Respond to an error condition:
 
-      <pre class="example highlight">
+      <pre highlight=js>
         // https://example.com/serviceworker.js
         self.ongeofenceerror = (event) =&gt; {
           console.log(event.geofence.id);
@@ -167,12 +167,12 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
             });
         };
       </pre>
-    </section>
+    </div>
 
-    <section>
-      <h4 id="example-unmonitor">Unmonitor a region in response to some other event</h4>
+    <div class=example>
+      Unmonitor a region in response to some other event:
 
-      <pre class="example highlight">
+      <pre highlight=js>
         // https://example.com/serviceworker.js
 
         // Either look geofence up by name:
@@ -196,7 +196,7 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
             .then(geofence =&gt; geofence.remove());
         };
       </pre>
-    </section>
+    </div>
   </section>
 </section>
 
