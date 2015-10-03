@@ -240,6 +240,18 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
   A <a>geofence</a> is said to be <dfn>breached</dfn> if the current geographical location
   changed from being inside the <a>geographic region</a> to outside (a <dfn>leave
   event</dfn>), or vice versa (an <dfn>enter event</dfn>).
+
+  <section>
+    <h3 id="implementation considerations">Implementation considerations</h3>
+
+    A <a>user agent</a> MAY impose <dfn data-lt="name limit">limits</dfn> on the maximum size of a
+    <a>geofence name</a>. If a limit is imposed, this limit SHOULD allow for at least 100 characters.
+
+    A <a>user agent</a> MAY impose <dfn data-lt="geofence limit">limits</dfn> on the total number of
+    <a data-lt="list of geofences">geofences</a> that can be registered by a single origin. If a
+    limit is imposed, this limit SHOULD allow at least 20 <a data-lt="list of geofences">geofences</a>
+    to be registered on a single origin.
+  </section>
 </section>
 
 <section>
@@ -357,9 +369,8 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
       <li>
         If the total number of <a data-lt="list of geofences">geofences</a> for all <a data-lt=
         "service worker registration">service worker registrations</a> in the current origin
-        is more than a <a>user agent</a> defined limit, <a>reject</a> <var>promise</var> with a
-        {{QuotaExceededError}} and terminate these substeps. A <a>user agent</a> SHOULD allow at
-        least 20 <a data-lt="list of geofences">geofences</a> for an origin.
+        is more than the <a>user agent</a> defined <a data-lt="geofence limit">limit</a>, <a>reject</a>
+        <var>promise</var> with a {{QuotaExceededError}} and terminate these substeps.
       </li>
       <li>
         Let <var>geofence</var> be a new <a>geofence</a>.
@@ -556,10 +567,10 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
     The <code><dfn attribute for=GeofenceRegion title=name>name</dfn></code> attribute MUST return
     the value it was initialized to. When the object is created, this attribute MUST be set to the
     value of the {{GeofenceRegionInit/name}} property in the {{GeofenceRegionInit}} dictionary, or
-    an empty string if that property wasn't set. A <a>user agent</a> MAY impose limits on the
-    maximum size of the {{GeofenceRegion/name}} attribute. If this limit is exceeded the constructor
-    MUST throw a {{RangeError}}. If a <a>user agent</a> imposes a limit on the size of the name
-    attribute, this limit SHOULD allow for at least 100 characters.
+    an empty string if that property wasn't set.
+
+    If the <a>user agent</a> defined <a data-lt="name limit">limit</a> on the maximum size of the
+    {{GeofenceRegion/name}} attribute is exceeded the constructor MUST throw a {{RangeError}}.
   </section>
 
   <section>

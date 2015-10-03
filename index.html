@@ -1052,7 +1052,11 @@
         <li><a href="#example-unmonitor"><span class="secno">1.1.4</span> <span class="content">Unmonitor a region in response to some other event</span></a>
        </ul>
      </ul>
-    <li><a href="#model"><span class="secno">2</span> <span class="content">Model</span></a>
+    <li>
+     <a href="#model"><span class="secno">2</span> <span class="content">Model</span></a>
+     <ul class="toc">
+      <li><a href="#implementation considerations"><span class="secno">2.1</span> <span class="content">Implementation considerations</span></a>
+     </ul>
     <li>
      <a href="#security-and-privacy-considerations"><span class="secno">3</span> <span class="content">Security and privacy considerations</span></a>
      <ul class="toc">
@@ -1234,6 +1238,12 @@ self.onsomeotherevent = (event) => {
     <p>A <a data-link-type="dfn" href="#geofence-term">geofence</a> is said to be <dfn data-dfn-type="dfn" data-noexport="" id="breached">breached<a class="self-link" href="#breached"></a></dfn> if the current geographical location
   changed from being inside the <a data-link-type="dfn" href="#geographic-region">geographic region</a> to outside (a <dfn data-dfn-type="dfn" data-noexport="" id="leave-event">leave
   event<a class="self-link" href="#leave-event"></a></dfn>), or vice versa (an <dfn data-dfn-type="dfn" data-noexport="" id="enter-event">enter event<a class="self-link" href="#enter-event"></a></dfn>).</p>
+    <section>
+     <h3 class="heading settled" data-level="2.1" id="implementation considerations"><span class="secno">2.1. </span><span class="content">Implementation considerations</span><a class="self-link" href="#implementation%20considerations"></a></h3>
+     <p>A <a data-link-type="dfn" href="#user-agent">user agent</a> MAY impose <dfn data-dfn-type="dfn" data-lt="name limit" data-noexport="" id="name-limit">limits<a class="self-link" href="#name-limit"></a></dfn> on the maximum size of a <a data-link-type="dfn" href="#geofence-name">geofence name</a>. If a limit is imposed, this limit SHOULD allow for at least 100 characters.</p>
+     <p>A <a data-link-type="dfn" href="#user-agent">user agent</a> MAY impose <dfn data-dfn-type="dfn" data-lt="geofence limit" data-noexport="" id="geofence-limit">limits<a class="self-link" href="#geofence-limit"></a></dfn> on the total number of <a data-link-type="dfn" href="#list-of-geofences">geofences</a> that can be registered by a single origin. If a
+    limit is imposed, this limit SHOULD allow at least 20 <a data-link-type="dfn" href="#list-of-geofences">geofences</a> to be registered on a single origin.</p>
+    </section>
    </section>
    <section>
     <h2 class="heading settled" data-level="3" id="security-and-privacy-considerations"><span class="secno">3. </span><span class="content">Security and privacy considerations</span><a class="self-link" href="#security-and-privacy-considerations"></a></h2>
@@ -1303,8 +1313,7 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
      <ol>
       <li> Let <var>serviceWorkerRegistration</var> be the <code class="idl"><a data-link-type="idl" href="#geofencemanager">GeofenceManager</a></code>'s associated <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registration</a>. 
       <li> If the total number of <a data-link-type="dfn" href="#list-of-geofences">geofences</a> for all <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-concept">service worker registrations</a> in the current origin
-        is more than a <a data-link-type="dfn" href="#user-agent">user agent</a> defined limit, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#reject-promise">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#quotaexceedederror">QuotaExceededError</a></code> and terminate these substeps. A <a data-link-type="dfn" href="#user-agent">user agent</a> SHOULD allow at
-        least 20 <a data-link-type="dfn" href="#list-of-geofences">geofences</a> for an origin. 
+        is more than the <a data-link-type="dfn" href="#user-agent">user agent</a> defined <a data-link-type="dfn" href="#geofence-limit">limit</a>, <a data-link-type="dfn" href="https://www.w3.org/2001/tag/doc/promises-guide#reject-promise">reject</a> <var>promise</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#quotaexceedederror">QuotaExceededError</a></code> and terminate these substeps. 
       <li> Let <var>geofence</var> be a new <a data-link-type="dfn" href="#geofence-term">geofence</a>. 
       <li> Set the <a data-link-type="dfn" href="#geofence-id">geofence ID</a> of <var>geofence</var> to a newly generated value. 
       <li> Set the <a data-link-type="dfn" href="#geographic-region">geographic region</a> of <var>geofence</var> to a
@@ -1408,10 +1417,8 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
      <p>The <code><dfn class="idl-code" data-dfn-for="GeofenceRegion" data-dfn-type="attribute" data-export="" id="dom-geofenceregion-name" title="name">name<a class="self-link" href="#dom-geofenceregion-name"></a></dfn></code> attribute MUST return
     the value it was initialized to. When the object is created, this attribute MUST be set to the
     value of the <code class="idl"><a data-link-type="idl" href="#dom-geofenceregioninit-name">name</a></code> property in the <code class="idl"><a data-link-type="idl" href="#dictdef-geofenceregioninit">GeofenceRegionInit</a></code> dictionary, or
-    an empty string if that property wasn’t set. A <a data-link-type="dfn" href="#user-agent">user agent</a> MAY impose limits on the
-    maximum size of the <code class="idl"><a data-link-type="idl" href="#dom-geofenceregion-name">name</a></code> attribute. If this limit is exceeded the constructor
-    MUST throw a <code class="idl"><a data-link-type="idl" href="http://www.ecma-international.org/ecma-262/6.0/#sec-native-error-types-used-in-this-standard-rangeerror">RangeError</a></code>. If a <a data-link-type="dfn" href="#user-agent">user agent</a> imposes a limit on the size of the name
-    attribute, this limit SHOULD allow for at least 100 characters.</p>
+    an empty string if that property wasn’t set.</p>
+     <p>If the <a data-link-type="dfn" href="#user-agent">user agent</a> defined <a data-link-type="dfn" href="#name-limit">limit</a> on the maximum size of the <code class="idl"><a data-link-type="idl" href="#dom-geofenceregion-name">name</a></code> attribute is exceeded the constructor MUST throw a <code class="idl"><a data-link-type="idl" href="http://www.ecma-international.org/ecma-262/6.0/#sec-native-error-types-used-in-this-standard-rangeerror">RangeError</a></code>.</p>
     </section>
     <section>
      <h3 class="heading settled" data-level="4.5" id="circulargeofenceregion-interface"><span class="secno">4.5. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#circulargeofenceregion">CircularGeofenceRegion</a></code> interface</span><a class="self-link" href="#circulargeofenceregion-interface"></a></h3>
@@ -1588,6 +1595,7 @@ interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geo
    <li><a href="#geofenceevent">GeofenceEvent</a><span>, in §4.6.1</span>
    <li><a href="#geofence-id">geofence ID</a><span>, in §2</span>
    <li><a href="#geofenceleave">geofenceleave</a><span>, in §4.6</span>
+   <li><a href="#geofence-limit">geofence limit</a><span>, in §2.1</span>
    <li><a href="#geofencemanager">GeofenceManager</a><span>, in §4.2</span>
    <li><a href="#geofence-name">geofence name</a><span>, in §2</span>
    <li><a href="#dictdef-geofenceoptions">GeofenceOptions</a><span>, in §4.2</span>
@@ -1634,6 +1642,7 @@ interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geo
      <li><a href="#dom-geofenceregioninit-name">dict-member for GeofenceRegionInit</a><span>, in §4.4</span>
      <li><a href="#dom-geofenceregion-name">attribute for GeofenceRegion</a><span>, in §4.4</span>
     </ul>
+   <li><a href="#name-limit">name limit</a><span>, in §2.1</span>
    <li><a href="#dom-serviceworkerglobalscope-ongeofenceenter">ongeofenceenter</a><span>, in §4.6</span>
    <li><a href="#dom-serviceworkerglobalscope-ongeofenceerror">ongeofenceerror</a><span>, in §4.6</span>
    <li><a href="#dom-serviceworkerglobalscope-ongeofenceleave">ongeofenceleave</a><span>, in §4.6</span>
