@@ -1430,7 +1430,7 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
 interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="circulargeofenceregion">CircularGeofenceRegion<a class="self-link" href="#circulargeofenceregion"></a></dfn> : <a data-link-type="idl-name" href="#geofenceregion">GeofenceRegion</a> {
   readonly attribute double <a class="idl-code" data-link-type="attribute" data-readonly="" data-type="double " href="#dom-circulargeofenceregion-latitude">latitude</a>;
   readonly attribute double <a class="idl-code" data-link-type="attribute" data-readonly="" data-type="double " href="#dom-circulargeofenceregion-longitude">longitude</a>;
-  readonly attribute double <dfn class="idl-code" data-dfn-for="CircularGeofenceRegion" data-dfn-type="attribute" data-export="" data-readonly="" data-type="double " id="dom-circulargeofenceregion-radius">radius<a class="self-link" href="#dom-circulargeofenceregion-radius"></a></dfn>;
+  readonly attribute double <a class="idl-code" data-link-type="attribute" data-readonly="" data-type="double " href="#dom-circulargeofenceregion-radius">radius</a>;
 };
 
 dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-circulargeofenceregioninit">CircularGeofenceRegionInit<a class="self-link" href="#dictdef-circulargeofenceregioninit"></a></dfn> {
@@ -1446,6 +1446,9 @@ dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" id="d
     circular degrees of the center of the circular region.</p>
      <p>The <code><dfn class="idl-code" data-dfn-for="CircularGeofenceRegion" data-dfn-type="attribute" data-export="" id="dom-circulargeofenceregion-longitude" title="longitude">longitude<a class="self-link" href="#dom-circulargeofenceregion-longitude"></a></dfn></code> attribute MUST return the value it was intialized to. This value represents the longitude
     in circular degrees of the center of the circular region.</p>
+     <p>The <code><dfn class="idl-code" data-dfn-for="CircularGeofenceRegion" data-dfn-type="attribute" data-export="" id="dom-circulargeofenceregion-radius" title="radius">radius<a class="self-link" href="#dom-circulargeofenceregion-radius"></a></dfn></code> attribute MUST
+    return thev value it was initialized to. This value represents the radius in meters of the
+    circular region.</p>
     </section>
     <section>
      <h3 class="heading settled" data-level="4.6" id="events"><span class="secno">4.6. </span><span class="content">Events</span><a class="self-link" href="#events"></a></h3>
@@ -1653,8 +1656,8 @@ interface <dfn class="idl-code" data-dfn-type="interface" data-export="" id="geo
     radius
     <ul>
      <li><a href="#radius">definition of</a><span>, in §2</span>
-     <li><a href="#dom-circulargeofenceregion-radius">attribute for CircularGeofenceRegion</a><span>, in §4.5</span>
      <li><a href="#dom-circulargeofenceregioninit-radius">dict-member for CircularGeofenceRegionInit</a><span>, in §4.5</span>
+     <li><a href="#dom-circulargeofenceregion-radius">attribute for CircularGeofenceRegion</a><span>, in §4.5</span>
     </ul>
    <li><a href="#dom-geofence-region">region</a><span>, in §4.3</span>
    <li><a href="#dom-geofence-remove">remove()</a><span>, in §4.3</span>
@@ -1776,7 +1779,7 @@ dictionary <a href="#dictdef-geofenceregioninit">GeofenceRegionInit</a> {
 interface <a href="#circulargeofenceregion">CircularGeofenceRegion</a> : <a data-link-type="idl-name" href="#geofenceregion">GeofenceRegion</a> {
   readonly attribute double <a class="idl-code" data-link-type="attribute" data-readonly="" data-type="double " href="#dom-circulargeofenceregion-latitude">latitude</a>;
   readonly attribute double <a class="idl-code" data-link-type="attribute" data-readonly="" data-type="double " href="#dom-circulargeofenceregion-longitude">longitude</a>;
-  readonly attribute double <a data-readonly="" data-type="double " href="#dom-circulargeofenceregion-radius">radius</a>;
+  readonly attribute double <a class="idl-code" data-link-type="attribute" data-readonly="" data-type="double " href="#dom-circulargeofenceregion-radius">radius</a>;
 };
 
 dictionary <a href="#dictdef-circulargeofenceregioninit">CircularGeofenceRegionInit</a> {

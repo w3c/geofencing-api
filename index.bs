@@ -618,7 +618,7 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
     attribute MUST return the value it was intialized to. This value represents the longitude
     in circular degrees of the center of the circular region.
 
-    The <code><dfn attribute for=CircularGeofenceRegion title=radius</dfn></code> attribute MUST
+    The <code><dfn attribute for=CircularGeofenceRegion title=radius>radius</dfn></code> attribute MUST
     return thev value it was initialized to. This value represents the radius in meters of the
     circular region.
   </section>
