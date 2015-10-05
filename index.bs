@@ -600,7 +600,7 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
         readonly attribute double radius;
       };
 
-      dictionary CircularGeofenceRegionInit {
+      dictionary CircularGeofenceRegionInit : GeofenceRegionInit {
         double latitude;
         double longitude;
         double radius;
