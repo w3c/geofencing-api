@@ -80,7 +80,7 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
 
   <em>This section is non-normative.</em>
 
-  The Geofencing API lets <a title="webapp">webapps</a> setup geographic boundaries around
+  The Geofencing API lets <a title="webapp">webapps</a> set up geographic boundaries around
   specific locations and then receive notifications when the hosting device enters or leaves
   those areas. While it would be possible to implement something similar using the
   Geolocation API [[!GEOLOCATION-API]], there are a few differences that could make this API
@@ -170,7 +170,7 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
     </div>
 
     <div class=example>
-      Unmonitor a region in response to some other event:
+      Stop monitoring a region in response to some other event:
 
       <pre highlight=js>
         // https://example.com/serviceworker.js
@@ -222,7 +222,7 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
   same origin. A user agent SHOULD NOT reuse the ID from an old <a>geofence</a> for a new
   one.
 
-  A <a>geofence</a> has a <dfn>include position</dfn> flag, a boolean indicating if events
+  A <a>geofence</a> has an <dfn>include position</dfn> flag, a boolean indicating if events
   associated with this <a>geofence</a> should include the exact geographic position.
 
   A <a>geofence</a> has an associated <dfn>state</dfn>, which is one of <dfn>active</dfn> or
@@ -420,7 +420,7 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
       <li>
         Ask the user whether they allow the <a>webapp</a> to monitor geofences, unless a
         prearranged trust relationship applies or the user has already granted or denied
-        permission explicitly for this <a>webapp</a>.
+        permission explicitly for this <a>webapp</a> to use this API.
       </li>
       <li>
         If permission is not granted, invoke the <a>Handle Functional Event</a>
@@ -703,10 +703,9 @@ spec: WebIDL; urlPrefix: https://heycam.github.io/webidl/#
         </li>
       </ol>
 
-      The <a>user agent</a> MAY wait with <a data-lt="fire a geofence event">firing a geofence
+      The <a>user agent</a> MAY delay <a data-lt="fire a geofence event">firing a geofence
       event</a> until some time and/or distance has passed after the <a title=
-      "breached">breach</a> was detected before firing an event to make sure that the
-      geofence really was <a>breached</a>.
+      "breached">breach</a> was detected to make sure that the geofence really was <a>breached</a>.
     </section>
 
     <section>
