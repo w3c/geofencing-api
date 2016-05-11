@@ -11,6 +11,7 @@ Abstract: This specification defines an API that lets <a title="webapp">webapps<
 Group: geolocation
 Link Defaults: html (dfn) global object/in parallel/queue a task/event handler/event handler event type
 Markup Shorthands: css off
+Warning: Obsolete
 </pre>
 
 <pre class=biblio>
